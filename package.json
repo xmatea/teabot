@@ -1,0 +1,21 @@
+{
+  "name": "teabot",
+  "version": "1.0.0",
+  "description": "a chatty little bot",
+  "main": "server.js",
+  "author": "Matea Bjørklund",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.3.2",
+    "enmap": "^2.7.2",
+    "enmap-level": "^2.1.0",
+    "enmap-sqlite": "^2.0.3",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC"
+}
