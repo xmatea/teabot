@@ -93,7 +93,7 @@ client.on("message", async(message) => {
     break;
 
     case "kiss" :
-    var int =  Math.floor(Math.random() * Math.floor(19));
+    var int =  Math.floor(Math.random() * Math.floor(20));
     const keys = require('./resources/gifs/kiss.json');
     var intString = int.toString();
 
@@ -118,6 +118,129 @@ client.on("message", async(message) => {
   .setImage(keys[intString]);
   message.channel.send(embedded);
 }
+    break;
+
+    case "say" :
+    if (args === undefined || args.length == 0) {
+      message.channel.send("Usage: `t.say [yourTextHere]`");
+    }
+    else {
+      const sayMessage = args.join(" ");
+      // The catch just ignores the error with a cute smiley thing.
+      message.delete().catch(O_o=>{});
+      message.channel.send(sayMessage);
+    }
+
+    break;
+
+    case "hug" :
+    var int =  Math.floor(Math.random() * Math.floor(9));
+    const keys = require('./resources/gifs/hug.json');
+    var intString = int.toString();
+
+    if (args === undefined || args.length == 0) {
+    const embedded = new Discord.RichEmbed()
+    .setDescription(message.author + " could really use a hug right now :(")
+    .setColor("#ffa7ad")
+    .setImage(keys[intString]);
+    message.channel.send(embedded);
+
+} else if (args[0] === message.author) {
+  const embedded = new Discord.RichEmbed()
+  .setDescription("Aw, " + message.author+ "had to hug themselves :<")
+  .setColor("#ffa7ad")
+  .setImage(keys[intString]);
+  message.channel.send(embedded);
+
+} else {
+  const embedded = new Discord.RichEmbed()
+  .setDescription("Oh! " + message.author + " gave " + args[0] + " a hug! They look so happy...")
+  .setColor("#ffa7ad")
+  .setImage(keys[intString]);
+  message.channel.send(embedded);
+}
+    break;
+
+    case "cuddle" :
+    var int =  Math.floor(Math.random() * Math.floor(7));
+    const keys = require('./resources/gifs/cuddle.json');
+    var intString = int.toString();
+
+    if (args === undefined || args.length == 0) {
+    const embedded = new Discord.RichEmbed()
+    .setDescription(message.author + " is lonely and wants some cuddles OmO")
+    .setColor("#ffa7ad")
+    .setImage(keys[intString]);
+    message.channel.send(embedded);
+
+} else if (args[0] === message.author) {
+  const embedded = new Discord.RichEmbed()
+  .setDescription("Of course you can cuddle with yourself, " + message.author+ "!")
+  .setColor("#ffa7ad")
+  .setImage(keys[intString]);
+  message.channel.send(embedded);
+
+} else {
+  const embedded = new Discord.RichEmbed()
+  .setDescription(message.author + " and " + args[0] + " cuddles! It looks so cozy...")
+  .setColor("#ffa7ad")
+  .setImage(keys[intString]);
+  message.channel.send(embedded);
+}
+    break;
+
+    case "kya" :
+    var int =  Math.floor(Math.random() * Math.floor(2));
+    const keys = require('./resources/gifs/kya.json');
+    var intString = int.toString();
+
+    if (args === undefined || args.length == 0) {
+    const embedded = new Discord.RichEmbed()
+    .setDescription(message.author + " is blushing! Now THAT is what i call kawaii :>")
+    .setColor("#ffa7ad")
+    .setImage(keys[intString]);
+    message.channel.send(embedded);
+
+} else if (args[0] === message.author) {
+  const embedded = new Discord.RichEmbed()
+  .setDescription("Hehe,  " + message.author+ " made themeselves blush. How tho?")
+  .setColor("#ffa7ad")
+  .setImage(keys[intString]);
+  message.channel.send(embedded);
+
+} else {
+  const embedded = new Discord.RichEmbed()
+  .setDescription("It seems like " + args[0] + " made "  + message.author + " blush a little OwO")
+  .setColor("#ffa7ad")
+  .setImage(keys[intString]);
+  message.channel.send(embedded);
+}
+    break;
+
+    case "say" :
+    if (args === undefined || args.length == 0) {
+      message.channel.send("Usage: `t.say [yourTextHere]`");
+    }
+    else {
+      const sayMessage = args.join(" ");
+      // The catch just ignores the error with a cute smiley thing.
+      message.delete().catch(O_o=>{});
+      message.channel.send(sayMessage);
+    }
+
+    break;
+
+    case "say" :
+    if (args === undefined || args.length == 0) {
+      message.channel.send("Usage: `t.say [yourTextHere]`");
+    }
+    else {
+      const sayMessage = args.join(" ");
+      // The catch just ignores the error with a cute smiley thing.
+      message.delete().catch(O_o=>{});
+      message.channel.send(sayMessage);
+    }
+
     break;
 
     case "say" :
