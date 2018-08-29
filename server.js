@@ -217,17 +217,8 @@ client.on("message", async(message) => {
 }
     break;
       
-    case "say" :
-    if (args === undefined || args.length == 0) {
-      message.channel.send("Usage: `t.say [yourTextHere]`");
-    }
-    else {
-      const sayMessage = args.join(" ");
-      // The catch just ignores the error with a cute smiley thing.
-      message.delete().catch(O_o=>{});
-      message.channel.send(sayMessage);
-    }
-
+    case "test" :
+    message.channel.send("k")
     break;
 
     case "embed" :
