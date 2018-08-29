@@ -134,7 +134,6 @@ client.on("message", async(message) => {
     break;
 
     case "hug" :
-message.channel.send(«kk»)
     var int =  Math.floor(Math.random() * Math.floor(9));
     const keys = require('./resources/gifs/hug.json');
     var intString = int.toString();
@@ -217,33 +216,7 @@ message.channel.send(«kk»)
   message.channel.send(embedded);
 }
     break;
-
-    case "say" :
-    if (args === undefined || args.length == 0) {
-      message.channel.send("Usage: `t.say [yourTextHere]`");
-    }
-    else {
-      const sayMessage = args.join(" ");
-      // The catch just ignores the error with a cute smiley thing.
-      message.delete().catch(O_o=>{});
-      message.channel.send(sayMessage);
-    }
-
-    break;
-
-    case "say" :
-    if (args === undefined || args.length == 0) {
-      message.channel.send("Usage: `t.say [yourTextHere]`");
-    }
-    else {
-      const sayMessage = args.join(" ");
-      // The catch just ignores the error with a cute smiley thing.
-      message.delete().catch(O_o=>{});
-      message.channel.send(sayMessage);
-    }
-
-    break;
-
+      
     case "say" :
     if (args === undefined || args.length == 0) {
       message.channel.send("Usage: `t.say [yourTextHere]`");
