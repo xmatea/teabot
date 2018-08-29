@@ -92,32 +92,6 @@ client.on("message", async(message) => {
     message.channel.send(embed);
     break;
 
-    case "kiss" :
-    var int =  Math.floor(Math.random() * Math.floor(20));
-    const keys = require('./resources/gifs/kiss.json');
-    var intString = int.toString();
-
-    if (args === undefined || args.length == 0) {
-    const embedded = new Discord.RichEmbed()
-    .setDescription(message.author + " wants some kisses UmU")
-    .setColor("#ffa7ad")
-    .setImage(keys[intString]);
-    message.channel.send(embedded);
-
-} else if (args[0] === message.author) {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Are you lonely " + message.author+ "?")
-  .setColor("#ffa7ad")
-  .setImage(keys[intString]);
-  message.channel.send(embedded);
-
-} else {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Look!" + message.author + " just kissed " + args[0] + "!! How adorable :3")
-  .setColor("#ffa7ad")
-  .setImage(keys[intString]);
-  message.channel.send(embedded);
-}
     break;
 
     case "say" :
@@ -133,90 +107,117 @@ client.on("message", async(message) => {
 
     break;
 
+    case "kiss" :
+    var int =  Math.floor(Math.random() * Math.floor(20));
+    const kisskeys = require('./resources/gifs/kiss.json');
+    var intString = int.toString();
+
+    if (args === undefined || args.length == 0) {
+    const embedded = new Discord.RichEmbed()
+    .setDescription(message.author + " wants some kisses UmU")
+    .setColor("#ffa7ad")
+    .setImage(kisskeys[intString]);
+    message.channel.send(embedded);
+
+} else if (args[0] === message.author) {
+  const embedded = new Discord.RichEmbed()
+  .setDescription("Are you lonely " + message.author+ "?")
+  .setColor("#ffa7ad")
+  .setImage(kisskeys[intString]);
+  message.channel.send(embedded);
+
+} else {
+  const embedded = new Discord.RichEmbed()
+  .setDescription("Look!" + message.author + " just kissed " + args[0] + "!! How adorable :3")
+  .setColor("#ffa7ad")
+  .setImage(kisskeys[intString]);
+  message.channel.send(embedded);
+}
+
     case "hug" :
     var int =  Math.floor(Math.random() * Math.floor(9));
-    const keys = require('./resources/gifs/hug.json');
+    const hugkeys = require('./resources/gifs/hug.json');
     var intString = int.toString();
-    
+
     if (args === undefined || args.length == 0) {
     const embedded = new Discord.RichEmbed()
     .setDescription(message.author + " could really use a hug right now :(")
     .setColor("#ffa7ad")
-    .setImage(keys[intString]);
+    .setImage(hugkeys[intString]);
     message.channel.send(embedded);
 
 } else if (args[0] === message.author) {
   const embedded = new Discord.RichEmbed()
   .setDescription("Aw, " + message.author+ "had to hug themselves :<")
   .setColor("#ffa7ad")
-  .setImage(keys[intString]);
+  .setImage(hugkeys[intString]);
   message.channel.send(embedded);
 
 } else {
   const embedded = new Discord.RichEmbed()
   .setDescription("Oh! " + message.author + " gave " + args[0] + " a hug! They look so happy...")
   .setColor("#ffa7ad")
-  .setImage(keys[intString]);
+  .setImage(hugkeys[intString]);
   message.channel.send(embedded);
 }
     break;
 
     case "cuddle" :
     var int =  Math.floor(Math.random() * Math.floor(7));
-    const keys = require('./resources/gifs/cuddle.json');
+    const cuddlekeys = require('./resources/gifs/cuddle.json');
     var intString = int.toString();
 
     if (args === undefined || args.length == 0) {
     const embedded = new Discord.RichEmbed()
     .setDescription(message.author + " is lonely and wants some cuddles OmO")
     .setColor("#ffa7ad")
-    .setImage(keys[intString]);
+    .setImage(cuddlekeys[intString]);
     message.channel.send(embedded);
 
 } else if (args[0] === message.author) {
   const embedded = new Discord.RichEmbed()
   .setDescription("Of course you can cuddle with yourself, " + message.author+ "!")
   .setColor("#ffa7ad")
-  .setImage(keys[intString]);
+  .setImage(cuddlekeys[intString]);
   message.channel.send(embedded);
 
 } else {
   const embedded = new Discord.RichEmbed()
   .setDescription(message.author + " and " + args[0] + " cuddles! It looks so cozy...")
   .setColor("#ffa7ad")
-  .setImage(keys[intString]);
+  .setImage(cuddlekeys[intString]);
   message.channel.send(embedded);
 }
     break;
 
     case "kya" :
     var int =  Math.floor(Math.random() * Math.floor(2));
-    const keys = require('./resources/gifs/kya.json');
+    const kyakeys = require('./resources/gifs/kya.json');
     var intString = int.toString();
 
     if (args === undefined || args.length == 0) {
     const embedded = new Discord.RichEmbed()
     .setDescription(message.author + " is blushing! Now THAT is what i call kawaii :>")
     .setColor("#ffa7ad")
-    .setImage(keys[intString]);
+    .setImage(kyakeys[intString]);
     message.channel.send(embedded);
 
 } else if (args[0] === message.author) {
   const embedded = new Discord.RichEmbed()
   .setDescription("Hehe,  " + message.author+ " made themeselves blush. How tho?")
   .setColor("#ffa7ad")
-  .setImage(keys[intString]);
+  .setImage(kyakeys[intString]);
   message.channel.send(embedded);
 
 } else {
   const embedded = new Discord.RichEmbed()
   .setDescription("It seems like " + args[0] + " made "  + message.author + " blush a little OwO")
   .setColor("#ffa7ad")
-  .setImage(keys[intString]);
+  .setImage(kyakeys[intString]);
   message.channel.send(embedded);
 }
     break;
-      
+
     case "test" :
     message.channel.send("k")
     break;
