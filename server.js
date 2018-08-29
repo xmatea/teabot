@@ -108,7 +108,6 @@ client.on("message", async(message) => {
     break;
 
     case "kiss" :
-    if (args[0] === "kiss") {
     var int =  Math.floor(Math.random() * Math.floor(20));
     const kisskeys = require('./resources/gifs/kiss.json');
     var intString = int.toString();
@@ -133,12 +132,10 @@ client.on("message", async(message) => {
   .setColor("#ffa7ad")
   .setImage(kisskeys[intString]);
   message.channel.send(embedded);
-    }
-  }
+}
   break;
 
     case "hug" :
-    if(args[0] === "hug") {
     var int =  Math.floor(Math.random() * Math.floor(9));
     const hugkeys = require('./resources/gifs/hug.json');
     var intString = int.toString();
@@ -164,11 +161,10 @@ client.on("message", async(message) => {
   .setImage(hugkeys[intString]);
   message.channel.send(embedded);
   }
-}
+
     break;
 
     case "cuddle" :
-    if(args[0] === "cuddle") {
     var int =  Math.floor(Math.random() * Math.floor(7));
     const cuddlekeys = require('./resources/gifs/cuddle.json');
     var intString = int.toString();
@@ -194,11 +190,11 @@ client.on("message", async(message) => {
   .setImage(cuddlekeys[intString]);
   message.channel.send(embedded);
   }
-}
+
     break;
 
     case "kya" :
-    if(args[0] === "kya") {
+
     var int =  Math.floor(Math.random() * Math.floor(2));
     const kyakeys = require('./resources/gifs/kya.json');
     var intString = int.toString();
@@ -224,7 +220,7 @@ client.on("message", async(message) => {
   .setImage(kyakeys[intString]);
   message.channel.send(embedded);
   }
-}
+
     break;
 
     case "test" :
