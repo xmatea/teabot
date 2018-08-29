@@ -134,10 +134,11 @@ client.on("message", async(message) => {
     break;
 
     case "hug" :
+message.channel.send(«kk»)
     var int =  Math.floor(Math.random() * Math.floor(9));
     const keys = require('./resources/gifs/hug.json');
     var intString = int.toString();
-
+    
     if (args === undefined || args.length == 0) {
     const embedded = new Discord.RichEmbed()
     .setDescription(message.author + " could really use a hug right now :(")
