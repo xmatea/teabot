@@ -93,8 +93,8 @@ client.on("message", async(message) => {
     break;
 
     case "kiss" :
-    var int =  Math.floor(Math.random() * Math.floor(20));
-    const keys = require('./resources/gifs/kiss.json');
+    var int =  Math.floor(Math.random() * Math.floor(7));
+    const keys = require('./resources/gifs/cuddle.json');
     var intString = int.toString();
 
     if (args === undefined || args.length == 0) {
