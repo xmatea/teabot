@@ -15,7 +15,7 @@ client.settings = new Enmap({provider: new Provider({name: "settings"})});
 client.on('error', console.error);
 
 const defaultSettings = {
-  prefix: ".",
+  prefix: "t.",
   chatMode: true,
   /*welcomeMessage: "Hello user, welcome to the server!",
   welcomeChannel: "general"*/
@@ -90,8 +90,6 @@ client.on("message", async(message) => {
     .setFooter("bot by cursedbaby#5140")
     .setTimestamp()
     message.channel.send(embed);
-    break;
-
     break;
 
     case "say" :
