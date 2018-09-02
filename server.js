@@ -17,6 +17,7 @@ client.on('error', console.error);
 const defaultSettings = {
   prefix: "t.",
   chatMode: true,
+  chatLanguage: "english"
   /*welcomeMessage: "Hello user, welcome to the server!",
   welcomeChannel: "general"*/
 }
@@ -49,22 +50,21 @@ client.on("ready", async() => {
 });
 
 
-client.on("message", async(message) => {
+client.on("message", async(message) => {+
   const serverConf = client.settings.get(message.guild.id);
   //const guildConf = client.settings.get(message.guild.id);
-  if((!whitelistedWords.includes(message.content)) && (!message.content.startsWith(serverConf.prefix))) return;
+  if((!whitelistedWords.includes(message.content.toLowerCase())) && (!message.content.startsWith(serverConf.prefix))) return;
   if(message.author.bot) return;
   const guildConf = client.settings.get(message.guild.id) || defaultSettings;
 
   const args = message.content.slice(serverConf.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
+
   //checks if chatMode is enabled and fetches the values from responses.json
-
-
-  if(responseObject[message.content] && (guildConf.chatMode == true)) {
-    var int =  Math.floor(Math.random() * Math.floor(responseObject[message.content].length));
-    var content = responseObject[message.content][int];
+  if(responseObject[message.content.toLowerCase()] && (guildConf.chatMode == true)) {
+    var int =  Math.floor(Math.random() * Math.floor(responseObject[message.content.toLowerCase()].length));
+    var content = responseObject[message.content.toLowerCase()][int];
     message.channel.send(content);
  }
 
@@ -77,6 +77,7 @@ client.on("message", async(message) => {
   "Here's a list of all the things i can do! My prefix is `" + serverConf.prefix + "`")
     .addField("CORE:",
     "`chatmode [on] [off]` Enables or disables my ability to join the chat with you guys\n" +
+    "`setLanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
     "`setprefix [prefix]` Set a new prefix for me\n" +
     "`help` Displays a list of all my commands\n", false)
 
@@ -84,7 +85,10 @@ client.on("message", async(message) => {
     "`say [text]` Makes me say anything owo\n" +
     "`embed [text]` Prove your point with embedded text\n" +
     "`8ball [text]` Ask the eightball a yes/no question\n" +
-    "`kiss [user]` Give someone a little kiss :>\n", false)
+    "`hug [user]` Hug someone who needs it!\n" +
+    "`cuddle [user]` Nothing fixes a bad day better than cuddles :3\n" +
+    "`kya [user]` We all blush at times...\n" +
+    "`kiss [user]` Kiss someone special~\n", false)
     .addField("MODERATION:",
     "`clear` Clears chat history\n", false)
     .setFooter("bot by cursedbaby#5140")
@@ -105,121 +109,70 @@ client.on("message", async(message) => {
 
     break;
 
-    case "kiss" :
-    var int =  Math.floor(Math.random() * Math.floor(20));
-    const kisskeys = require('./resources/gifs/kiss.json');
+    case "kiss": case "hug": case "cuddle": case "kya":
+      var gifmodule;
+      var undefinedUser;
+      var userSelf;
+      var definedUser;
+
+      switch (command) {
+        case "kiss":
+          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\kiss.json');
+          undefinedUser = message.author + " wants some kisses UmU";
+          userSelf = "Are you lonely " + message.author + "?";
+          definedUser = "Look!" + message.author + " just kissed " + args[0] + "!! How adorable :3";
+
+        break;
+
+        case "hug":
+          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\hug.json');
+          undefinedUser = message.author + " could really use a hug right now :(";
+          userSelf = "Aw, " + message.author+ "had to hug themselves :<";
+          definedUser = "Oh! " + message.author + " gave " + args[0] + " a hug! They look so happy...";
+      break;
+
+        case "cuddle":
+          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\cuddle.json');
+          undefinedUser = message.author + " is lonely and wants some cuddles OmO";
+          userSelf = "Of course you can cuddle with yourself, " + message.author+ "!";
+          definedUser = message.author + " and " + args[0] + " cuddles! It looks so cozy...";
+      break;
+
+        case "kya":
+          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\kya.json');
+          undefinedUser = message.author + " is blushing! That's stupidly cute :>";
+          userSelf = "Hehe,  " + message.author+ " made themeselves blush. How tho?";
+          definedUser = "It seems like " + args[0] + " made "  + message.author + " blush a little OwO";
+      break;
+    }
+
+    var int =  Math.floor(Math.random() * Math.floor((Object.keys(gifmodule).length + 1)));
     var intString = int.toString();
 
     if (args === undefined || args.length == 0) {
     const embedded = new Discord.RichEmbed()
-    .setDescription(message.author + " wants some kisses UmU")
+    .setDescription(undefinedUser)
     .setColor("#ffa7ad")
-    .setImage(kisskeys[intString]);
+    .setImage(gifmodule[intString]);
     message.channel.send(embedded);
 
-} else if (args[0] === message.author) {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Are you lonely " + message.author+ "?")
-  .setColor("#ffa7ad")
-  .setImage(kisskeys[intString]);
-  message.channel.send(embedded);
-
-} else {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Look!" + message.author + " just kissed " + args[0] + "!! How adorable :3")
-  .setColor("#ffa7ad")
-  .setImage(kisskeys[intString]);
-  message.channel.send(embedded);
-}
-  break;
-
-    case "hug" :
-    var int =  Math.floor(Math.random() * Math.floor(9));
-    const hugkeys = require('./resources/gifs/hug.json');
-    var intString = int.toString();
-
-    if (args === undefined || args.length == 0) {
+  } else if (args[0] === message.author) {
     const embedded = new Discord.RichEmbed()
-    .setDescription(message.author + " could really use a hug right now :(")
+    .setDescription(userSelf)
     .setColor("#ffa7ad")
-    .setImage(hugkeys[intString]);
+    .setImage(gifmodule[intString]);
     message.channel.send(embedded);
 
-} else if (args[0] === message.author) {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Aw, " + message.author+ "had to hug themselves :<")
-  .setColor("#ffa7ad")
-  .setImage(hugkeys[intString]);
-  message.channel.send(embedded);
-
-} else {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Oh! " + message.author + " gave " + args[0] + " a hug! They look so happy...")
-  .setColor("#ffa7ad")
-  .setImage(hugkeys[intString]);
-  message.channel.send(embedded);
+  } else {
+    const embedded = new Discord.RichEmbed()
+    .setDescription(definedUser)
+    .setColor("#ffa7ad")
+    .setImage(gifmodule[intString]);
+    message.channel.send(embedded);
   }
 
     break;
 
-    case "cuddle" :
-    var int =  Math.floor(Math.random() * Math.floor(7));
-    const cuddlekeys = require('./resources/gifs/cuddle.json');
-    var intString = int.toString();
-
-    if (args === undefined || args.length == 0) {
-    const embedded = new Discord.RichEmbed()
-    .setDescription(message.author + " is lonely and wants some cuddles OmO")
-    .setColor("#ffa7ad")
-    .setImage(cuddlekeys[intString]);
-    message.channel.send(embedded);
-
-} else if (args[0] === message.author) {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Of course you can cuddle with yourself, " + message.author+ "!")
-  .setColor("#ffa7ad")
-  .setImage(cuddlekeys[intString]);
-  message.channel.send(embedded);
-
-} else {
-  const embedded = new Discord.RichEmbed()
-  .setDescription(message.author + " and " + args[0] + " cuddles! It looks so cozy...")
-  .setColor("#ffa7ad")
-  .setImage(cuddlekeys[intString]);
-  message.channel.send(embedded);
-  }
-
-    break;
-
-    case "kya" :
-
-    var int =  Math.floor(Math.random() * Math.floor(2));
-    const kyakeys = require('./resources/gifs/kya.json');
-    var intString = int.toString();
-
-    if (args === undefined || args.length == 0) {
-    const embedded = new Discord.RichEmbed()
-    .setDescription(message.author + " is blushing! Now THAT is what i call kawaii :>")
-    .setColor("#ffa7ad")
-    .setImage(kyakeys[intString]);
-    message.channel.send(embedded);
-
-} else if (args[0] === message.author) {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("Hehe,  " + message.author+ " made themeselves blush. How tho?")
-  .setColor("#ffa7ad")
-  .setImage(kyakeys[intString]);
-  message.channel.send(embedded);
-
-} else {
-  const embedded = new Discord.RichEmbed()
-  .setDescription("It seems like " + args[0] + " made "  + message.author + " blush a little OwO")
-  .setColor("#ffa7ad")
-  .setImage(kyakeys[intString]);
-  message.channel.send(embedded);
-  }
-
-    break;
 
     case "test" :
     message.channel.send("k")
@@ -293,6 +246,20 @@ client.on("message", async(message) => {
     }
     } else {
       message.channel.send("Usage: `chatmode` `on` / `off`");
+    }
+    break;
+    case "setLanguage":
+    if (args[0] == "english") {
+      guildConf.chatLanguage = "english";
+      client.settings.set(message.guild.id, guildConf);
+      message.channel.send("Okay, i'll start talking english again. Ehem, testing, is this english?");
+
+  } else if (args[0] == "norwegian") {
+      guildConf.chatLanguage = "norwegian";
+      client.settings.set(message.guild.id, guildConf);
+        message.channel.send("Åh, hei! Wow. Har savnet å snakke morsmålet mitt. K-Kan jeg virkelig snakke norsk her?");
+    } else {
+      message.channel.send("Usage: `setLanguage` `norwegian` / `english`");
     }
     break;
   }
