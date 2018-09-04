@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 
+
 const responseObject = require("./resources/responses.json");
 const whitelistedWords = Object.keys(responseObject);
 
@@ -50,7 +51,7 @@ client.on("ready", async() => {
 });
 
 
-client.on("message", async(message) => {+
+client.on("message", async(message) => {
   const serverConf = client.settings.get(message.guild.id);
   //const guildConf = client.settings.get(message.guild.id);
   if((!whitelistedWords.includes(message.content.toLowerCase())) && (!message.content.startsWith(serverConf.prefix))) return;
@@ -67,7 +68,6 @@ client.on("message", async(message) => {+
     var content = responseObject[message.content.toLowerCase()][int];
     message.channel.send(content);
  }
-
   switch(command) {
     case "help" :
     const embed = new Discord.RichEmbed()
@@ -117,7 +117,7 @@ client.on("message", async(message) => {+
 
       switch (command) {
         case "kiss":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\kiss.json');
+          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\kiss.json');
           undefinedUser = message.author + " wants some kisses UmU";
           userSelf = "Are you lonely " + message.author + "?";
           definedUser = "Look!" + message.author + " just kissed " + args[0] + "!! How adorable :3";
@@ -125,21 +125,21 @@ client.on("message", async(message) => {+
         break;
 
         case "hug":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\hug.json');
+          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\hug.json');
           undefinedUser = message.author + " could really use a hug right now :(";
           userSelf = "Aw, " + message.author+ "had to hug themselves :<";
           definedUser = "Oh! " + message.author + " gave " + args[0] + " a hug! They look so happy...";
       break;
 
         case "cuddle":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\cuddle.json');
+          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\cuddle.json');
           undefinedUser = message.author + " is lonely and wants some cuddles OmO";
           userSelf = "Of course you can cuddle with yourself, " + message.author+ "!";
           definedUser = message.author + " and " + args[0] + " cuddles! It looks so cozy...";
       break;
 
         case "kya":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\tbeta\\resources\\gifs\\kya.json');
+          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\kya.json');
           undefinedUser = message.author + " is blushing! That's stupidly cute :>";
           userSelf = "Hehe,  " + message.author+ " made themeselves blush. How tho?";
           definedUser = "It seems like " + args[0] + " made "  + message.author + " blush a little OwO";
@@ -172,7 +172,6 @@ client.on("message", async(message) => {+
   }
 
     break;
-
 
     case "test" :
     message.channel.send("k")
@@ -248,6 +247,7 @@ client.on("message", async(message) => {+
       message.channel.send("Usage: `chatmode` `on` / `off`");
     }
     break;
+
     case "setLanguage":
     if (args[0] == "english") {
       guildConf.chatLanguage = "english";
@@ -265,6 +265,5 @@ client.on("message", async(message) => {+
   }
 
 });
-
 
 client.login(process.env.TOKEN);
