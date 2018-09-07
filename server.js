@@ -262,11 +262,17 @@ client.on("message", async(message) => {
 
     case "setlanguage":
     if (args[0] == "english") {
+        if (guildConf.chatLanguage = "english") {
+          message.channel.send("It seems like my language has already been set to English!");
+        }
       guildConf.chatLanguage = "english";
       client.settings.set(message.guild.id, guildConf);
       message.channel.send("Okay, i'll start talking english again. Ehem, testing, is this english?");
 
   } else if (args[0] == "norwegian") {
+    if (guildConf.chatLanguage = "norwegian") {
+      message.channel.send("Noen har allerede satt språket mitt til norsk!");
+    }
       guildConf.chatLanguage = "norwegian";
       client.settings.set(message.guild.id, guildConf);
         message.channel.send("Åh, hei! Wow. Har savnet å snakke morsmålet mitt. K-Kan jeg virkelig snakke norsk her?");
