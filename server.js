@@ -16,7 +16,8 @@ client.settings = new Enmap({provider: new Provider({name: "settings"})});
 client.on('error', console.error);
 
 const defaultSettings = {
-  prefix: "b.",
+  //prefix: "b.",
+  prefix: "t.",
   chatMode: true,
   chatLanguage: "english"
   /*welcomeMessage: "Hello user, welcome to the server!",
@@ -277,5 +278,5 @@ client.on("message", async(message) => {
 
 });
 
-// client.login(process.env.TOKEN);
-client.login("NDc3ODgyNjY0ODc1OTgyODcy.DmsZfA.KITcnCqTckbFIh2BlPNs62VqUIg");
+client.login(process.env.TOKEN);
+//client.login("NDc3ODgyNjY0ODc1OTgyODcy.DmsZfA.KITcnCqTckbFIh2BlPNs62VqUIg");
