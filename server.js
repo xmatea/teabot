@@ -16,7 +16,7 @@ client.settings = new Enmap({provider: new Provider({name: "settings"})});
 client.on('error', console.error);
 
 const defaultSettings = {
-  prefix: "t.",
+  prefix: "b.",
   chatMode: true,
   chatLanguage: "english"
   /*welcomeMessage: "Hello user, welcome to the server!",
@@ -53,10 +53,21 @@ client.on("ready", async() => {
 
 client.on("message", async(message) => {
   const serverConf = client.settings.get(message.guild.id);
-  //const guildConf = client.settings.get(message.guild.id);
+  const guildConf = client.settings.get(message.guild.id);
+
+  function getServerLang() {
+    if (guildConf.chatLanguage == "norwegian") {
+      return require("./resources/norwegian_responses.json");
+    } else {
+      return require("./resources/responses.json");
+    }
+}
+
+  const responseObject = getServerLang();
+  const whitelistedWords = Object.keys(responseObject);
+
   if((!whitelistedWords.includes(message.content.toLowerCase())) && (!message.content.startsWith(serverConf.prefix))) return;
   if(message.author.bot) return;
-  const guildConf = client.settings.get(message.guild.id) || defaultSettings;
 
   const args = message.content.slice(serverConf.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
@@ -77,7 +88,7 @@ client.on("message", async(message) => {
   "Here's a list of all the things i can do! My prefix is `" + serverConf.prefix + "`")
     .addField("CORE:",
     "`chatmode [on] [off]` Enables or disables my ability to join the chat with you guys\n" +
-    "`setLanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
+    "`setlanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
     "`setprefix [prefix]` Set a new prefix for me\n" +
     "`help` Displays a list of all my commands\n", false)
 
@@ -248,7 +259,7 @@ client.on("message", async(message) => {
     }
     break;
 
-    case "setLanguage":
+    case "setlanguage":
     if (args[0] == "english") {
       guildConf.chatLanguage = "english";
       client.settings.set(message.guild.id, guildConf);
@@ -259,11 +270,12 @@ client.on("message", async(message) => {
       client.settings.set(message.guild.id, guildConf);
         message.channel.send("Åh, hei! Wow. Har savnet å snakke morsmålet mitt. K-Kan jeg virkelig snakke norsk her?");
     } else {
-      message.channel.send("Usage: `setLanguage` `norwegian` / `english`");
+      message.channel.send("Usage: `setlanguage` `norwegian` / `english`");
     }
     break;
   }
 
 });
 
-client.login(process.env.TOKEN);
+// client.login(process.env.TOKEN);
+client.login("NDc3ODgyNjY0ODc1OTgyODcy.DmsZfA.KITcnCqTckbFIh2BlPNs62VqUIg");

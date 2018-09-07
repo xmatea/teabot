@@ -6,7 +6,7 @@
   "author": "Matea Bjørklund",
   "dependencies": {
     "discord.io": "^2.5.3",
-    "discord.js": "^11.3.2",
+    "discord.js": "^11.4.2",
     "enmap": "^2.7.2",
     "enmap-level": "^2.1.0",
     "enmap-sqlite": "^2.0.3",
