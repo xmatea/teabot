@@ -3,10 +3,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 
-
-const responseObject = require("./resources/responses.json");
-const whitelistedWords = Object.keys(responseObject);
-
 // Initialize **or load** the server configurations
 const Enmap = require('enmap');
 const Provider = require('enmap-sqlite');
@@ -16,12 +12,9 @@ client.settings = new Enmap({provider: new Provider({name: "settings"})});
 client.on('error', console.error);
 
 const defaultSettings = {
-  //prefix: "b.",
   prefix: "t.",
   chatMode: true,
-  chatLanguage: "english"
-  /*welcomeMessage: "Hello user, welcome to the server!",
-  welcomeChannel: "general"*/
+  chatLanguage: "english",
 }
 
 client.on("guildCreate", guild => {
@@ -110,7 +103,7 @@ client.on("message", async(message) => {
 
     case "say" :
     if (args === undefined || args.length == 0) {
-      message.channel.send("Usage: `t.say [yourTextHere]`");
+      message.channel.send("Usage: `"+ serverConf.prefix + ".say [yourTextHere]`");
     }
     else {
       const sayMessage = args.join(" ");
@@ -129,7 +122,7 @@ client.on("message", async(message) => {
 
       switch (command) {
         case "kiss":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\kiss.json');
+          gifmodule = require('./resources/gifs/kiss.json');
           undefinedUser = message.author + " wants some kisses UmU";
           userSelf = "Are you lonely " + message.author + "?";
           definedUser = "Look!" + message.author + " just kissed " + args[0] + "!! How adorable :3";
@@ -137,21 +130,21 @@ client.on("message", async(message) => {
         break;
 
         case "hug":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\hug.json');
+          gifmodule = require('./resources/gifs/hug.json');
           undefinedUser = message.author + " could really use a hug right now :(";
           userSelf = "Aw, " + message.author+ "had to hug themselves :<";
           definedUser = "Oh! " + message.author + " gave " + args[0] + " a hug! They look so happy...";
       break;
 
         case "cuddle":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\cuddle.json');
+          gifmodule = require('./resources/gifs/cuddle.json');
           undefinedUser = message.author + " is lonely and wants some cuddles OmO";
           userSelf = "Of course you can cuddle with yourself, " + message.author+ "!";
           definedUser = message.author + " and " + args[0] + " cuddles! It looks so cozy...";
       break;
 
         case "kya":
-          gifmodule = require('C:\\Users\\matea\\Desktop\\teabot\\resources\\gifs\\kya.json');
+          gifmodule = require('./resources/gifs/kya.json');
           undefinedUser = message.author + " is blushing! That's stupidly cute :>";
           userSelf = "Hehe,  " + message.author+ " made themeselves blush. How tho?";
           definedUser = "It seems like " + args[0] + " made "  + message.author + " blush a little OwO";
@@ -186,7 +179,7 @@ client.on("message", async(message) => {
     break;
 
     case "test" :
-    message.channel.send("k")
+    //anything
     break;
 
     case "embed" :
@@ -264,6 +257,7 @@ client.on("message", async(message) => {
     if (args[0] == "english") {
         if (guildConf.chatLanguage = "english") {
           message.channel.send("It seems like my language has already been set to English!");
+          return;
         }
       guildConf.chatLanguage = "english";
       client.settings.set(message.guild.id, guildConf);
@@ -272,6 +266,7 @@ client.on("message", async(message) => {
   } else if (args[0] == "norwegian") {
     if (guildConf.chatLanguage = "norwegian") {
       message.channel.send("Noen har allerede satt språket mitt til norsk!");
+      return;
     }
       guildConf.chatLanguage = "norwegian";
       client.settings.set(message.guild.id, guildConf);
@@ -285,4 +280,3 @@ client.on("message", async(message) => {
 });
 
 client.login(process.env.TOKEN);
-//client.login("NDc3ODgyNjY0ODc1OTgyODcy.DmsZfA.KITcnCqTckbFIh2BlPNs62VqUIg");
