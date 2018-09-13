@@ -7,7 +7,7 @@
 "må gå" : ["allerede?", "aw okei. ha det gøy.", "jeg visste ikke at du hadde et liv lol"],
 "god natt" : ["god natt! *jeg kommer til å vente på deg her fordi jeg er ensom :)*", "god natt til deg og :>", "gn :3"],
 "sov godt" : ["og sov lenge!", "god natt <3", "natta <3", "kommer til å vente til du er tilbake OuO"],
-"hei" : ["hei!", "hallo" , "hey", "g'day mate", "oi", "hallo igjen", "hei :>", "oh hei", "ah wb"],
+"hei" : ["hei!", "hallo" , "hey", "g'day mate", "oi", "hallo igjen", "hei :>", "oh hei"],
 "tea": ["hei!", "hallo der", "jeg hørte navnet mitt", "OI M8", "hm?", "hei", "ja kjære?", "hallo, skjønne vesen <3"],
 "h": ["aw, ting kommer til å bli bedre :/" , "alt blir bedre med tid :,) ikke tenk på det", "det går fint", "dw"],
 "gay" : ["hvem, du?", "det eneste som er gay her er deg", "wOw du er så original", "no u", "snakker du om"],
@@ -32,11 +32,11 @@
 "kaffe" : ["ganske ironisk men jeg elsker kaffe", "oooooh kaffeeee OwO (aner ikke hva dere pratet om, bare så ordet kaffe og kom løpende...)", "k a f f e"],
 "elsker deg" : ["elsker deg og", "**søtt**", "aww", "skulle ønske jeg hadde noen jeg også...", "jeg vil ha akkurat det der @everyone :<"],
 "jeg elsker deg" : ["jeg elsker deg og", "**søtt**", "aww", "skulle ønske jeg hadde noen jeg også..." , "jeg vil ha akkurat det der @everyone :<"],
-"despacito" : ["despacidont"],
-"despacito2" : ["despacidont"],
-"despacito 2" : ["despacidont"],
-"despaci2" : ["despacidont"],
+"despacito" : ["despacikke"],
+"despacito2" : ["despacikke"],
+"despacito 2" : ["despacikke"],
+"despaci2" : ["despacikke"],
 "ay" : ["ayy", "aY", "aye"],
 "eat pant" : ["huehue"],
-"secret command" : ["if you're reading, this just know that matea was very angry and frustrated when this sentence was written."]
+"secret command" : ["hvis du leser dette, spis bukse"]
 }
