@@ -2,6 +2,8 @@ require('http').createServer().listen(3000)
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+require('dotenv').config();
+
 
 // Initialize **or load** the server configurations
 const Enmap = require('enmap');
@@ -280,4 +282,4 @@ client.on("message", async(message) => {
 
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.BTOKEN);
