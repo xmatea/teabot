@@ -14,7 +14,7 @@ client.settings = new Enmap({provider: new Provider({name: "settings"})});
 client.on('error', console.error);
 
 const defaultSettings = {
-  prefix: "b.",
+  prefix: "t.",
   chatMode: true,
   chatLanguage: "english",
 }
@@ -43,7 +43,7 @@ client.on("ready", async() => {
       }
     });
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
-  client.user.setActivity("Drinking tea! | b.help");
+  client.user.setActivity("Drinking tea! | t.help");
 });
 
 
@@ -281,4 +281,4 @@ client.on("message", async(message) => {
 
 });
 
-client.login(process.env.BTOKEN);
+client.login(process.env.TOKEN);
