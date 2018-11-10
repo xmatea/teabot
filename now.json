@@ -1,3 +1,5 @@
-"env" {
-  "TOKEN": "@acme-api-key"
+{  
+  "env": {
+    "TOKEN": "@acme-api-key"
+  }
 }
