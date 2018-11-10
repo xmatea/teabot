@@ -81,22 +81,22 @@ client.on("message", async(message) => {
     .setColor("#606691")
     .setDescription("Thanks for letting me stay here even though I'm new! In the future, I'll have way more functions!\n" +
   "Here's a list of all the things i can do! My prefix is `" + guildConf.prefix + "`")
-    .addField("CORE:",
-    "`chatmode [on] [off]` Enables or disables my ability to join the chat with you guys\n" +
-    "`setlanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
-    "`setprefix [prefix]` Set a new prefix for me\n" +
-    "`help` Displays a list of all my commands\n", false)
+    .addField("CORE:",+
+    guildConf.prefix +"`chatmode [on] [off]` Enables or disables my ability to join the chat with you guys\n" +
+    guildConf.prefix + "`setlanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
+    guildConf.prefix +  "`setprefix [prefix]` Set a new prefix for me\n" +
+    guildConf.prefix +  "`help` Displays a list of all my commands\n", false)
 
-    .addField("FUN:",
-    "`say [text]` Makes me say anything owo\n" +
-    "`embed [text]` Prove your point with embedded text\n" +
-    "`8ball [text]` Ask the eightball a yes/no question\n" +
-    "`hug [user]` Hug someone who needs it!\n" +
-    "`cuddle [user]` Nothing fixes a bad day better than cuddles :3\n" +
-    "`kya [user]` We all blush at times...\n" +
-    "`kiss [user]` Kiss someone special~\n", false)
-    .addField("MODERATION:",
-    "`clear` Clears chat history\n", false)
+    .addField("FUN:", +
+   guildConf.prefix + "`say [text]` Makes me say anything owo\n" +
+   guildConf.prefix + "`embed [text]` Prove your point with embedded text\n" +
+   guildConf.prefix + "`8ball [text]` Ask the eightball a yes/no question\n" +
+   guildConf.prefix + "`hug [user]` Hug someone who needs it!\n" +
+  // guildConf.prefix + "`cuddle [user]` Nothing fixes a bad day better than cuddles :3\n" +
+  // guildConf.prefix + "`kya [user]` We all blush at times...\n" +
+   guildConf.prefix + "`kiss [user]` Kiss someone special~\n", false)
+    .addField("MODERATION:", +
+    guildConf.prefix + "`clear` Clears chat history\n", false)
     .setFooter("bot by cursedbaby#5140")
     .setTimestamp()
     message.channel.send(embed);
