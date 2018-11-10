@@ -2,6 +2,8 @@ require('http').createServer().listen(3000)
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+require('dotenv').config();
+
 
 // Initialize **or load** the server configurations
 const Enmap = require('enmap');
@@ -46,7 +48,6 @@ client.on("ready", async() => {
 
 
 client.on("message", async(message) => {
-  const serverConf = client.settings.get(message.guild.id);
   const guildConf = client.settings.get(message.guild.id);
 
   function getServerLang() {
@@ -60,10 +61,10 @@ client.on("message", async(message) => {
   const responseObject = getServerLang();
   const whitelistedWords = Object.keys(responseObject);
 
-  if((!whitelistedWords.includes(message.content.toLowerCase())) && (!message.content.startsWith(serverConf.prefix))) return;
+  if((!whitelistedWords.includes(message.content.toLowerCase())) && (!message.content.startsWith(guildConf.prefix))) return;
   if(message.author.bot) return;
 
-  const args = message.content.slice(serverConf.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(guildConf.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
 
@@ -79,7 +80,7 @@ client.on("message", async(message) => {
     .setTitle("Hi, im Tea~")
     .setColor("#606691")
     .setDescription("Thanks for letting me stay here even though I'm new! In the future, I'll have way more functions!\n" +
-  "Here's a list of all the things i can do! My prefix is `" + serverConf.prefix + "`")
+  "Here's a list of all the things i can do! My prefix is `" + guildConf.prefix + "`")
     .addField("CORE:",
     "`chatmode [on] [off]` Enables or disables my ability to join the chat with you guys\n" +
     "`setlanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
@@ -103,7 +104,7 @@ client.on("message", async(message) => {
 
     case "say" :
     if (args === undefined || args.length == 0) {
-      message.channel.send("Usage: `"+ serverConf.prefix + ".say [yourTextHere]`");
+      message.channel.send("Usage: `"+ guildConf.prefix + "say [text]`");
     }
     else {
       const sayMessage = args.join(" ");
@@ -184,7 +185,7 @@ client.on("message", async(message) => {
 
     case "embed" :
      if (args === undefined || args.length == 0) {
-       message.channel.send("Usage: `t.embed [yourTextHere]`");
+       message.channel.send("Usage: `" + guildConf.prefix + "embed [text]`");
       }
        else {
         const text = args.join(" ");
@@ -206,7 +207,7 @@ client.on("message", async(message) => {
        break;
 
     case "setprefix" :
-    if (args != null) {
+    if (!(args === undefined || args.length == 0)) {
         if(!message.member.hasPermission("ADMINISTRATOR")) {
           message.channel.send("Oh, you have to be an administrator in order to use that command!")
         } else {
@@ -216,7 +217,7 @@ client.on("message", async(message) => {
           message.channel.send("Changed my prefix to: `" + guildConf.prefix + "`");
         }
       } else {
-        message.channel.send("Usage: `setprefix` `[new prefix]`");
+        message.channel.send("Usage: `" + guildConf.prefix + "setprefix` `[new prefix]`");
     }
     break;
 
