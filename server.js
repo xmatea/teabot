@@ -165,7 +165,7 @@ client.on("message", async(message) => {
   } else if (args[0] === message.author) {
     const embedded = new Discord.RichEmbed()
     .setDescription(userSelf)
-    .setColor("#ffa7ad")
+    .setColor("#ffa7ae")
     .setImage(gifmodule[intString]);
     message.channel.send(embedded);
 
