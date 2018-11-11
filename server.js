@@ -82,21 +82,21 @@ client.on("message", async(message) => {
     .setDescription("Thanks for letting me stay here even though I'm new! In the future, I'll have way more functions!\n" +
   "Here's a list of all the things i can do! My prefix is `" + guildConf.prefix + "`")
     .addField("CORE:",
-    guildConf.prefix +"`chatmode [on] [off]` Enables or disables my ability to join the chat with you guys\n" +
-    guildConf.prefix + "`setlanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
-    guildConf.prefix +  "`setprefix [prefix]` Set a new prefix for me\n" +
-    guildConf.prefix +  "`help` Displays a list of all my commands\n", false)
+    "`" + guildConf.prefix + "chatmode [on] [off]` Enables or disables my ability to join the chat with you guys\n" +
+    "`" + guildConf.prefix + "setlanguage [english] [norwegian]` Yeah, i actually speak norwegian heh\n" +
+    "`" + guildConf.prefix + "setprefix [prefix]` Set a new prefix for me\n" +
+    "`" + guildConf.prefix + "help` Displays a list of all my commands\n", false)
 
     .addField("FUN:",
-   guildConf.prefix + "`say [text]` Makes me say anything owo\n" +
-   guildConf.prefix + "`embed [text]` Prove your point with embedded text\n" +
-   guildConf.prefix + "`8ball [text]` Ask the eightball a yes/no question\n" +
-   guildConf.prefix + "`hug [user]` Hug someone who needs it!\n" +
+   "`" + guildConf.prefix + "say [text]` Makes me say anything owo\n" +
+   "`" + guildConf.prefix + "embed [text]` Prove your point with embedded text\n" +
+   "`" + guildConf.prefix + "8ball [text]` Ask the eightball a yes/no question\n" +
+   "`" + guildConf.prefix + "hug [user]` Hug someone who needs it!\n" +
   // guildConf.prefix + "`cuddle [user]` Nothing fixes a bad day better than cuddles :3\n" +
   // guildConf.prefix + "`kya [user]` We all blush at times...\n" +
-   guildConf.prefix + "`kiss [user]` Kiss someone special~\n", false)
+   "`" + guildConf.prefix + "kiss [user]` Kiss someone special~\n", false)
     .addField("MODERATION:",
-    guildConf.prefix + "`clear` Clears chat history\n", false)
+    "`" + guildConf.prefix + "clear` Clears chat history\n", false)
     .setFooter("bot by cursedtea#5140")
     .setTimestamp()
     message.channel.send(embed);
