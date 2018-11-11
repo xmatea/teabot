@@ -28,13 +28,6 @@ client.on("guildDelete", guild => {
   client.settings.delete(guild.id);
 });
 
-/*client.on("guildMemberAdd", member => {
-  let welcomeMesssage = welcomeMessage.replace("user", member.user.tag)
-  member.guild.channels
-  .find("name", client.settings.get(member.guild.id, "welcomeChannel"))
-  .send(welcomeMessage)
-  .catch(console.error);
-});*/
 
 client.on("ready", async() => {
     client.guilds.forEach(guild => {
@@ -43,7 +36,7 @@ client.on("ready", async() => {
       }
     });
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
-  client.user.setActivity("Drinking tea! | t.help");
+  client.user.setActivity("with children");
 });
 
 
@@ -281,4 +274,4 @@ client.on("message", async(message) => {
 
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.MTOKEN);
