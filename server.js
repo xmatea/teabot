@@ -197,10 +197,10 @@ client.on("message", async(message) => {
 
     case "8ball" :
      if (args === undefined || args.length == 0) {
-         message.channel.send("You need to specify a yes or no question! ex: `t.8ball should i go to sleep?`");
+         message.channel.send("You need to specify a yes or no question! ex: `"+ guildConf.prefix +"8ball should i go to sleep?`");
        } else {
          var int =  Math.floor(Math.random() * Math.floor(12));
-         const keys = require('./resources/eightball');
+         const keys = require('./resources/commands/eightball');
          var intString = int.toString();
          message.channel.send(keys[intString]);
        }
