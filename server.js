@@ -165,7 +165,7 @@ client.on("message", async(message) => {
   } else if (args[0] === message.author) {
     const embedded = new Discord.RichEmbed()
     .setDescription(userSelf)
-    .setColor("#ffa7ad")
+    .setColor("#ffa7ae")
     .setImage(gifmodule[intString]);
     message.channel.send(embedded);
 
@@ -197,10 +197,10 @@ client.on("message", async(message) => {
 
     case "8ball" :
      if (args === undefined || args.length == 0) {
-         message.channel.send("You need to specify a yes or no question! ex: `t.8ball should i go to sleep?`");
+         message.channel.send("You need to specify a yes or no question! ex: `"+ guildConf.prefix +"8ball should i go to sleep?`");
        } else {
          var int =  Math.floor(Math.random() * Math.floor(12));
-         const keys = require('./resources/eightball');
+         const keys = require('./resources/commands/eightball');
          var intString = int.toString();
          message.channel.send(keys[intString]);
        }
@@ -272,7 +272,7 @@ client.on("message", async(message) => {
     }
       guildConf.chatLanguage = "norwegian";
       client.settings.set(message.guild.id, guildConf);
-        message.channel.send("Åh, hei! Wow. Har savnet å snakke morsmålet mitt. K-Kan jeg virkelig snakke norsk her?");
+        message.channel.send("Åh, hei! Wow. Har savnet å snakke morsmålet mitt. K-an jeg virkelig snakke norsk her?");
     } else {
       message.channel.send("Usage: `setlanguage` `norwegian` / `english`");
     }
