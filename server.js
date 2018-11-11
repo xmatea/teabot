@@ -272,7 +272,7 @@ client.on("message", async(message) => {
     }
       guildConf.chatLanguage = "norwegian";
       client.settings.set(message.guild.id, guildConf);
-        message.channel.send("Åh, hei! Wow. Har savnet å snakke morsmålet mitt. K-Kan jeg virkelig snakke norsk her?");
+        message.channel.send("Åh, hei! Wow. Har savnet å snakke morsmålet mitt. K-an jeg virkelig snakke norsk her?");
     } else {
       message.channel.send("Usage: `setlanguage` `norwegian` / `english`");
     }
