@@ -11,6 +11,8 @@
     "enmap": "^2.7.2",
     "enmap-level": "^2.1.0",
     "enmap-sqlite": "^2.0.3",
+    "loki": "^0.14.0",
+    "lokijs": "^1.5.5",
     "winston": "^3.0.0"
   },
   "devDependencies": {},
