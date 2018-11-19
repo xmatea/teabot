@@ -1,58 +1,54 @@
+//INITIALIZE
 require('http').createServer().listen(3000)
+require('dotenv').config();
+
 const Discord = require("discord.js");
 const client = new Discord.Client();
-require('dotenv').config();
+const config = require("./config.json");
+
+const fs = require('fs');
 
 const Enmap = require('enmap');
 const Provider = require('enmap-sqlite');
-client.settings = new Enmap({provider: new Provider({name: "settings"})});
 
-// HANDLE THIS BETTER !!!!!
-client.on('error', console.error);
+client.settings = new Enmap({provider: new Provider({name: "settings"})});
+client.commands = new Discord.Collection();
 
 const defaultSettings = {
   prefix: "t.",
   chatMode: true,
-  chatLanguage: "english",
 }
+const metadata = [];
 
+fs.readdir("./src/commands/", (err, files) => {
+  files.forEach(f => {
+    let props = require(`./src/commands/${f}`);
+    client.commands.set(props.meta.name, props);
+  });
+});
+
+//ERROR HANDLING
+process.on('unhandledRejection', (reason) => {
+  console.error(reason)
+});
+
+client.on('error', console.error);
+client.on('warn', console.warn);
+
+
+//EVENT HANDLING
 client.on("guildCreate", guild => {
   client.settings.set(guild.id, defaultSettings);
+  console.log(`I have joined a new guild with ${(guild.members.size) - 1} users. ID: ${guild.id}`);
 });
 
 client.on("guildDelete", guild => {
   client.settings.delete(guild.id);
+  console.log(`I have left a guild with ${(guild.members.size) - 1} users. ID: ${guild.id}`);
 });
 
-client.on("ready", async() => {
-    client.guilds.forEach(guild => {
-      if(!client.settings.has(guild.id)) {
-        client.settings.set(guild.id, defaultSettings);
-      }
-    });
-  console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
-  client.user.setActivity("Drinking tea! | t.help");
-});
+client.on("ready", async() => require('./src/events/ready.js')(client, defaultSettings));
+client.on("message", async(message) => require("./src/events/message.js")(client, message, Discord));
 
-
-client.on("message", async(message) => {
-  if (message.author.bot) return;
-  const guildConf = client.settings.get(message.guild.id);
-
-  if (guildConf.chatMode) {
-    const responder = require('./src/core/responder.js');
-    const content = require('./src/lib/responses.json');
-    responder.fn(client, message, content);
-  }
-
-  if (!message.content.startsWith(guildConf.prefix)) return;
-
-
-  const args = message.content.slice(guildConf.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-
-  const x = require("./src/commands/" + command + ".js");
-  x.fn(client, message, args);
-
-});
+//LOGIN
 client.login(process.env.TOKEN);

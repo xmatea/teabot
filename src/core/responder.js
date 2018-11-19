@@ -1,10 +1,7 @@
-exports.fn = function (client, message, content) {
-  const msg = message.content.toLowerCase();
+exports.fn = function (client, message, respKeys) {
 
-  if (content[msg]) {
-      var r =  Math.floor(Math.random() * (content[msg].length - 1));
-      //message.channel.startTyping(3);
-      //setTimeout(message.channel.stopTyping, 5);
-      message.channel.send(content[msg][r]);
-    }
+      let msg = message.content.toLowerCase();
+      const respObj = require("./../lib/responses.json");
+      var r =  Math.floor(Math.random() * (respObj[msg].length - 1));
+      message.channel.send(respObj[msg][r]);
  }

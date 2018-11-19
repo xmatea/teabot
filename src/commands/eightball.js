@@ -1,3 +1,10 @@
+exports.meta = {
+  name: "eightball",
+  desc: "In desperate need of advice? Ask the magic eightball!",
+  usage: "Usage: <command> <question>",
+  module: "Fun"
+}
+
 exports.response = [
   "Yeah.",
   "Yes.",
@@ -12,13 +19,6 @@ exports.response = [
   "Depends?",
   "Maybe?"
 ];
-
-exports.meta = {
-  desc: "In desperate need of advice? Ask the magic eightball!",
-  usage: "Usage: <command> <question>",
-  module: "Fun"
-}
-
 exports.fn = function(client, message, args) {
 
   if (args === undefined || args.length == 0) {
