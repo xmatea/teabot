@@ -12,5 +12,8 @@ exports.fn = function(client, message, args) {
   }
 
   message.delete().catch(O_o=>{});
-  message.channel.send(args.join(" "));
+
+  message.channel.startTyping(1);
+  client.setTimeout(function(){message.channel.send(args.join(" "))}, 3000);
+  message.channel.stopTyping(true);
 }
