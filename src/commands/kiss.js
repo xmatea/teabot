@@ -1,7 +1,7 @@
 exports.meta = {
-  name: "hug",
+  name: "kiss",
   usage: "Usage: <command> <user>",
-  desc: "Be wholesome, and give a hug to someone who needs it!",
+  desc: "Kiss someone extra special~",
   module: "Fun"
 }
 
@@ -9,8 +9,8 @@ exports.fn = function(client, message, args, Discord) {
   const user = args[0];
 
 exports.speech = {
-  defUser: `${message.author.username} just gave ${user} a hug! `,
-  undefUser: `I think ${message.author.username} wants a hug...`,
+  defUser: `Oh look, ${message.author.username} gave ${user} a kiss!`,
+  undefUser: `${message.author.username}, are you lonely?`,
 //  userSelf: `${message.author.username} gave themselves a hug. I guess that's possible..?`,
 }
 
@@ -21,14 +21,13 @@ exports.speech = {
      desc = this.speech.defUser;
    }
 
-   const hug = require("./../lib/gifs/hug.js");
+   const kiss= require("./../lib/gifs/kiss.js");
 
    let embed = new Discord.RichEmbed()
    .setDescription(`**${desc}**`)
-   .setImage(hug.gifs[Math.floor(Math.random()* hug.gifs.length)])
+   .setImage(kiss.gifs[Math.floor(Math.random()* kiss.gifs.length)])
    .setColor("#a3acff")
-   .setFooter(message.author.username + " did this btw")
+   .setFooter(message.author.username + " requested this btw")
    .setTimestamp();
-
    message.channel.send(embed);
   }
