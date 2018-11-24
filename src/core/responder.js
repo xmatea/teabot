@@ -6,5 +6,4 @@ exports.fn = function (client, message, respKeys) {
       message.channel.startTyping(1);
       client.setTimeout(function(){message.channel.send(respObj[msg][r])}, 800);
       message.channel.stopTyping(true);
-
  }
