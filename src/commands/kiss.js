@@ -1,7 +1,7 @@
 exports.meta = {
-  name: "hug",
+  name: "kiss",
   usage: "Usage: <command> <user>",
-  desc: "Be wholesome, and give a hug to someone who needs it!",
+  desc: "Kiss someone extra special~",
   module: "Fun"
 }
 
@@ -10,7 +10,7 @@ exports.fn = function(client, message, args, Discord) {
   let user = args[0];
   let prop;
 
-  //IS ARGUMENT A USER?
+//IS ARGUMENT A USER????
   if (!(args === undefined || args.length == 0) && user.startsWith("<@")) {
     let id = user.substring(2).slice(0, -1);
       if (guild.members.get(id)) {
@@ -19,11 +19,11 @@ exports.fn = function(client, message, args, Discord) {
       }
   }
 
-  exports.speech = {
-    defUser: `${message.author.username} just gave ${user} a hug! `,
-    undefUser: `I think ${message.author.username} wants a hug...`,
-    userSelf: `${message.author.username} gave themselves a hug. I guess that's possible?`,
-  }
+exports.speech = {
+  defUser: `Oh look, ${message.author.username} gave ${user} a kiss!`,
+  undefUser: `${message.author.username}, are you lonely?`,
+  userSelf: `${message.author.username}, why are you kissing yourself...?`,
+}
 
   let desc;
   if(args === undefined || args.length == 0) {
@@ -36,14 +36,13 @@ exports.fn = function(client, message, args, Discord) {
      desc = this.speech.defUser;
    }
 
-   const hug = require("./../lib/gifs/hug.js");
+   const kiss= require("./../lib/gifs/kiss.js");
 
    let embed = new Discord.RichEmbed()
    .setDescription(`**${desc}**`)
-   .setImage(hug.gifs[Math.floor(Math.random()* hug.gifs.length)])
+   .setImage(kiss.gifs[Math.floor(Math.random()* kiss.gifs.length)])
    .setColor("#a3acff")
-   .setFooter(message.author.username + " did this btw")
+   .setFooter(message.author.username + " requested this btw")
    .setTimestamp();
-
    message.channel.send(embed);
   }
