@@ -13,11 +13,6 @@ exports.fn = function(client, message, args) {
   }
     const Discord = require('discord.js');
     message.delete().catch(O_o=>{});
-<<<<<<< HEAD
-    message.channel.send(new Discord.RichEmbed()
-    .setColor("#ffa7ad")
-    .setDescription(args.join(" ")));
-=======
 
     message.channel.startTyping(1);
     client.setTimeout(function(){message.channel.send(new Discord.RichEmbed()
@@ -26,7 +21,4 @@ exports.fn = function(client, message, args) {
     }, 2500);
 
     message.channel.stopTyping(true);
-
-
->>>>>>> experimental
 }
