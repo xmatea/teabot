@@ -2,7 +2,8 @@ exports.meta = {
   name: "say",
   usage: "Usage: <command> <text>",
   desc: "Make me say anything!",
-  module: "Fun"
+  module: "Fun",
+  enabled: true
 }
 
 exports.fn = function(client, message, args) {

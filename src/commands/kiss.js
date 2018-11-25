@@ -2,7 +2,8 @@ exports.meta = {
   name: "kiss",
   usage: "Usage: <command> <user>",
   desc: "Kiss someone extra special~",
-  module: "Fun"
+  module: "Gifs",
+  enabled: true
 }
 
 exports.fn = function(client, message, args, Discord) {
@@ -36,7 +37,7 @@ exports.speech = {
      desc = this.speech.defUser;
    }
 
-   const kiss= require("./../lib/gifs/kiss.js");
+   const kiss= require("./../lib/gifs/kisslib.js");
 
    let embed = new Discord.RichEmbed()
    .setDescription(`**${desc}**`)

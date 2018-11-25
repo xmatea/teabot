@@ -1,8 +1,9 @@
 exports.meta = {
   name: "clear",
   usage: "Usage: <command>",
-  desc: "Use this and I'll clear the chat in an instant!",
-  module: "Moderation"
+  desc: "Use this and I'll clear the chat in an instant.",
+  module: "Moderation",
+  enabled: true
 }
 
 exports.speech = {

@@ -1,7 +1,7 @@
 exports.meta = {
-  name: "hug",
+  name: "blush",
   usage: "Usage: <command> <user>",
-  desc: "Be wholesome, and give a hug to someone who needs it :>",
+  desc: "When something makes you a litte uwu",
   module: "Gifs",
   enabled: true
 }
@@ -21,9 +21,9 @@ exports.fn = function(client, message, args, Discord) {
   }
 
   exports.speech = {
-    defUser: `${message.author.username} just gave ${user} a hug! `,
-    undefUser: `I think ${message.author.username} wants a hug...`,
-    userSelf: `${message.author.username} gave themselves a hug. I guess that's possible?`,
+    defUser: `${user} made ${message.author.username} blush heheh `,
+    undefUser: `${message.author.username} is blushing...`,
+    userSelf: `Congratulations, ${message.author.username}. You either fucked up or made yourself blush.`,
   }
 
   let desc;
@@ -37,11 +37,11 @@ exports.fn = function(client, message, args, Discord) {
      desc = this.speech.defUser;
    }
 
-   const hug = require("./../lib/gifs/huglib.js");
+   const blush = require("./../lib/gifs/blushlib.js");
 
    let embed = new Discord.RichEmbed()
    .setDescription(`**${desc}**`)
-   .setImage(hug.gifs[Math.floor(Math.random()* hug.gifs.length)])
+   .setImage(blush.gifs[Math.floor(Math.random()* blush.gifs.length)])
    .setColor("#a3acff")
    .setFooter(message.author.username + " requested this btw")
    .setTimestamp();

@@ -2,7 +2,8 @@ exports.meta = {
   name: "eightball",
   desc: "In desperate need of advice? Ask the magic eightball!",
   usage: "Usage: <command> <question>",
-  module: "Fun"
+  module: "Fun",
+  enabled: true
 }
 
 exports.response = [

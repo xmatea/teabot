@@ -1,7 +1,7 @@
 exports.meta = {
-  name: "hug",
+  name: "cuddle",
   usage: "Usage: <command> <user>",
-  desc: "Be wholesome, and give a hug to someone who needs it :>",
+  desc: "Cuddle someone...",
   module: "Gifs",
   enabled: true
 }
@@ -21,9 +21,9 @@ exports.fn = function(client, message, args, Discord) {
   }
 
   exports.speech = {
-    defUser: `${message.author.username} just gave ${user} a hug! `,
-    undefUser: `I think ${message.author.username} wants a hug...`,
-    userSelf: `${message.author.username} gave themselves a hug. I guess that's possible?`,
+    defUser: `${message.author.username} is cuddling with ${user} <3 `,
+    undefUser: `${message.author.username} could really use some cuddles...`,
+    userSelf: `Aww ${message.author.username}, you can't really cuddle yourself :(`,
   }
 
   let desc;
@@ -37,11 +37,11 @@ exports.fn = function(client, message, args, Discord) {
      desc = this.speech.defUser;
    }
 
-   const hug = require("./../lib/gifs/huglib.js");
+   const cuddle = require("./../lib/gifs/cuddlelib.js");
 
    let embed = new Discord.RichEmbed()
    .setDescription(`**${desc}**`)
-   .setImage(hug.gifs[Math.floor(Math.random()* hug.gifs.length)])
+   .setImage(cuddle.gifs[Math.floor(Math.random()* cuddle.gifs.length)])
    .setColor("#a3acff")
    .setFooter(message.author.username + " requested this btw")
    .setTimestamp();

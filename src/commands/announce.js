@@ -2,7 +2,8 @@ exports.meta = {
   name: "announce",
   desc: "Prove your point by making it ~fancy~",
   usage: "Usage: <command> <question>",
-  module: "Fun"
+  module: "Fun",
+  enabled: true
 }
 
 
