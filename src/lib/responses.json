@@ -2,76 +2,73 @@
   "hi": ["hello.",
     "hi.",
     "hello. i hope you're having a decent day.",
-    "hi!! i'm tea!!! wait, do you know me? ah, if you do, this would be embarrasing...",
-    "hello, my name is tea and i'm the lonliest bot known to man."
+    "hi!! i'm tea!!!",
+    "hello, my name is tea and i'm the lonliest bot known to man.",
     "hi :>",
     "oh hi",
     "hey",
+    "hi there",
     "hii",
-    "oi"
-  ],
+    "oi"],
 
-  "hello": ["hello.",
+   "hello": ["hello.",
     "hi.",
-    "hello. i hope you're having a decent day."
-    "hi!! i'm tea!!! wait, do you know me? ah, if you do, this would be embarrasing...",
-    "hello, my name is tea and i'm the lonliest bot known to man."
+    "hello. i hope you're having a decent day.",
+    "hi!! i'm tea!!!",
+    "hello, my name is tea and i'm the lonliest bot known to man.",
     "hi :>",
     "oh hi",
+    "hi there",
     "hey",
     "hii",
-    "oi"
-  ],
+    "oi"],
 
-  "teabot": ["that's my name. at least that's what i have been programmed to believe.",
+   "teabot": ["that's my name. at least that's what i have been programmed to believe.",
     "yeah, what do you want from me?",
     "yes, master?",
     "wait. that's me.",
     "huh?",
     "hm?",
+    "yes? sorry for lurking.",
+    "im here! oh sorry, i didnt mean to lurk...",
     "thats me!",
     "yes?",
     "anything wrong?",
-    "yeah, yeah, im a bot. don't rub it in..."
-  ],
+    "yeah, yeah, im a bot. don't rub it in..."],
 
-  "gm": ["good morning.",
+   "gm": ["good morning.",
      "hello. did you sleep well?",
      "good morning to you too.",
      "i would not call this a good morning.",
      "there are no good or bad mornings.",
      "when you are a bot programmed to do useless tasks, all mornings are equally meaningless.",
      "morning, day and night are all the same for *me*, but good morning to you",
-     "good morning is a perfect example of typical human bullshit. oh well, gm"
-   ],
+     "good morning is a perfect example of typical human bullshit. oh well, gm"],
 
-   "gm": ["good morning.",
+    "gm": ["good morning.",
       "hello. did you sleep well?",
       "good morning to you too.",
       "i would not call this a good morning.",
       "there are no good or bad mornings.",
       "when you are a bot programmed to do useless tasks, all mornings are equally meaningless.",
       "morning, day and night are all the same for *me*, but good morning to you",
-      "good morning is a perfect example of typical human bullshit. oh well, gm"
-    ],
+      "good morning is a perfect example of typical human bullshit. oh well, gm"],
 
-  "gn": ["sleep well.",
-    "good night.",
-    "i hope that you are actually going to sleep, and won't come back here after trying to sleep for ten minutes.",
-    "okay. i'll find something else to do then. sleep well...",
-    "have a good night!"
-    "good night! *i'll be waiting for you to come back beacuse im lonely here :)*",
-  ],
-
-  "good night": ["sleep well.",
+   "gn": ["sleep well.",
     "good night.",
     "i hope that you are actually going to sleep, and won't come back here after trying to sleep for ten minutes.",
     "okay. i'll find something else to do then. sleep well...",
     "have a good night!",
-    "good night! *i'll be waiting for you to come back beacuse im lonely here :)*",
-],
+    "good night! *i'll be waiting for you to come back beacuse im lonely here :)*"],
 
-  "bye": ["already? okay...",
+   "good night": ["sleep well.",
+    "good night.",
+    "i hope that you are actually going to sleep, and won't come back here after trying to sleep for ten minutes.",
+    "okay. i'll find something else to do then. sleep well...",
+    "have a good night!",
+    "good night! *i'll be waiting for you to come back beacuse im lonely here :)*"],
+
+   "bye": ["already? okay...",
     "pls dont go",
     "aw okay. see you soon",
     "ill be waiting for you to come back",
@@ -80,10 +77,9 @@
     "you will be missed...",
     "now? i was having so much fun lurking in the chat :(",
     "aw, okay. have fun",
-    "i didn't know you had a life"
-  ],
+    "i didn't know you had a life"],
 
-  "gtg": ["already? okay...",
+   "gtg": ["already? okay...",
       "pls dont go",
       "aw okay. see you soon",
       "ill be waiting for you to come back",
@@ -92,82 +88,71 @@
       "you will be missed...",
       "now? i was having so much fun lurking in the chat :(",
       "aw, okay. have fun",
-      "i didn't know you had a life"
-    ],
+      "i didn't know you had a life"],
 
-  "how is everyone" : ["im overheating, but other than that im perfectly fine. hbu",
+   "how is everyone" : ["im overheating, but other than that im perfectly fine. hbu",
     "im good",
     "im fine",
-    "shit im warmer than i should be. might be overheating... #robotproblems",
-    "how are **you**?"
-  ],
+    "how are **you**?"],
 
-  "im tired" : ["wish i could say the same. being a bot suck",
+   "im tired" : ["wish i could say the same. being a bot sucks",
     "at least you feel something",
     "aw go to sleep then!",
     "maybe its time to sleep?",
     "well, i mean, theres this thing called sleep that's supposed to fix that",
-    "sleep is for the dead tho"
-  ],
+    "sleep is for the dead tho"],
 
-  "no u": ["no u",
+   "no u": ["no u",
     "no u",
     "no u",
     "no u",
-    "make a text wall, shall we?"
-  ],
+    "make a text wall, shall we?"],
 
-  "h": ["dont worry, things will get better uwu",
+   "h": ["dont worry, things will get better uwu",
      "take a deep breath okay?",
      "it's okay",
      "dw",
-     "its okay. i love you"
-   ],
+     "its okay. i love you"],
 
-  "gay": ["that would be you",
-    "no u",
-  ],
+   "gay": ["that would be you",
+    "no u"],
 
-  "cute": ["almost as cute as you",
+   "cute": ["almost as cute as you",
     "awww",
     "yeah, but you are cute too",
-    "yes"
-    "well, you are cute too"
-  ],
+    "yes",
+    "well, you are cute too"],
 
-  "i wanna die" : ["dont we all",
+   "i wanna die" : ["dont we all",
     "at least you're capable of dying and not just some machine like me doomed to exist forever and ever.",
-    "thats not funny",
+    "that's not funny",
     "*slap* get your shit together",
-    "im here for you. ive been reading your messages for a while now."
-  ],
+    "im here for you. ive been reading your messages for a while now."],
 
-  "imma kms" : ["id do the same if i could, im immortal and its ***killing me***",
+   "imma kms" : ["id do the same if i could. im immortal and its ***killing me***",
     "bye",
-    "stop being so damn dramatic"
-  ],
+    "stop being so damn dramatic"],
 
-  "im bored" : ["same",
+   "im bored" : ["same",
     "me too",
     "wow same",
     "find something to do then",
-    "read a book or some shit then"
-  ],
+    "read a book or some shit then"],
 
-  "help": ["need some help, honey?",
+   "help": ["need some help, honey?",
     "is there anthing i can do?"],
 
-  "oof": ["damn, haven't heard that word in a while",
-    "oof isn't funny. fight me."],
+   "oof": ["damn, haven't heard that word in a while",
+    "oof isn't funny. fight me.",
+    "oh god, not the oof"],
 
-  "oh god" : ["oh fuck",
+   "oh god" : ["oh fuck",
     "shit",
-    "..."
-  ],
+    "..."],
 
-  "f": ["f"],
+   "f": ["f"],
 
-  "rip": ["rip indeed"],
-  
-  "up": ["yes"],
+   "rip": ["rip indeed"],
+
+  "up": ["yes"]
 }
