@@ -23,7 +23,9 @@ const metadata = [];
 fs.readdir("./src/commands/", (err, files) => {
   files.forEach(f => {
     let props = require(`./src/commands/${f}`);
-    client.commands.set(props.meta.name, props);
+      if (props.meta.enabled) {
+      client.commands.set(props.meta.name, props);
+    }
   });
 });
 

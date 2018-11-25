@@ -19,6 +19,8 @@ module.exports = (client, message, Discord)  => {
 
   if(client.commands.get(command)) {
     client.commands.get(command).fn(client, message, args, Discord);
-    console.log(`\nRan command: ${command}, with argument(s): ${args}\nRequested by user: ${message.author.tag} / ${message.author} \nIn guild: ${message.guild.name} / ${message.guild.id}`);
+    console.log(`\nRan command: ${command}, with argument(s): ${args}\n` +
+    `By user:  ${message.author.tag} / ${message.author} \n` +
+    `In guild: ${message.guild.name} / ${message.guild.id}`);
   }
 }

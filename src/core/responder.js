@@ -4,6 +4,6 @@ exports.fn = function (client, message, respKeys) {
       var r =  Math.floor(Math.random() * (respObj[msg].length - 1));
 
       message.channel.startTyping(1);
-      client.setTimeout(function(){message.channel.send(respObj[msg][r])}, 800);
+      client.setTimeout(function(){message.channel.send(respObj[msg][r])}, 700);
       message.channel.stopTyping(true);
  }
