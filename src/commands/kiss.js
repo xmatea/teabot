@@ -3,7 +3,8 @@ exports.meta = {
   usage: "Usage: <command> <user>",
   desc: "Kiss someone extra special~",
   module: "Gifs",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.fn = function(client, message, args, Discord) {
@@ -26,16 +27,18 @@ exports.speech = {
   userSelf: `${message.author.username}, why are you kissing yourself...?`,
 }
 
-  let desc;
-  if(args === undefined || args.length == 0) {
-     desc = this.speech.undefUser;
-
-   } else if(prop.user.tag === message.author.tag) {
-     desc = this.speech.userSelf;
-
+let desc;
+if(args === undefined || args.length == 0) {
+   desc = this.speech.undefUser;
+ } else if(user.startsWith("<@")) {
+     if(prop.user.tag === message.author.tag) {
+       desc = this.speech.userSelf;
+     } else {
+       desc = this.speech.defUser;
+     }
    } else {
-     desc = this.speech.defUser;
-   }
+    desc = this.speech.defUser;
+  }
 
    const kiss= require("./../lib/gifs/kisslib.js");
 

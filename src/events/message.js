@@ -18,9 +18,18 @@ module.exports = (client, message, Discord)  => {
 
 
   if(client.commands.get(command)) {
-    client.commands.get(command).fn(client, message, args, Discord);
-    console.log(`\nRan command: ${command}, with argument(s): ${args}\n` +
-    `By user:  ${message.author.tag} / ${message.author} \n` +
-    `In guild: ${message.guild.name} / ${message.guild.id}`);
-  }
+    if (client.commands.get(command).meta.whitelisted) {
+      if(client.whitelist.get(message.author.tag)) {
+        client.commands.get(command).fn(client, message, args, Discord);
+        console.log(`\nRan command: ${command}, with argument(s): ${args}\n` +
+        `By user:  ${message.author.tag} / ${message.author} \n` +
+        `In guild: ${message.guild.name} / ${message.guild.id}`);
+      }
+    } else {
+        client.commands.get(command).fn(client, message, args, Discord);
+        console.log(`\nRan command: ${command}, with argument(s): ${args}\n` +
+        `By user:  ${message.author.tag} / ${message.author} \n` +
+        `In guild: ${message.guild.name} / ${message.guild.id}`);
+      }
+    }
 }

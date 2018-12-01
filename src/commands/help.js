@@ -3,7 +3,8 @@ exports.meta = {
   desc: "Displays this message.",
   usage: "<command>",
   module: "Core",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.fn = function(client, message, args, Discord) {
@@ -20,6 +21,8 @@ exports.fn = function(client, message, args, Discord) {
   };
 
   client.commands.forEach(function(name, mod) {
+    if(name.meta.whitelisted) return;
+
     switch(name.meta.module) {
       case "Fun":
       speech.fun = speech.fun + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
@@ -41,12 +44,12 @@ exports.fn = function(client, message, args, Discord) {
 
   let embed = new Discord.RichEmbed()
     .setColor("#ffa5db")
+    //.setImage("https://i.imgur.com/LIrqMkX.jpg")
     .setTitle("Hi, I'm Tea!")
     .setDescription(speech.desc)
-    .addField("~ Fun ~", speech.fun)
-    .addField("~ Gifs ~", speech.gifs)
-    .addField("~ Core ~", speech.core)
-    .addField("~ Moderation ~", speech.mod)
+    .addField("Fun", speech.fun + speech.gifs)
+    .addField("Core", speech.core)
+    .addField("Moderation", speech.mod)
     .setTimestamp(new Date())
     .setFooter(speech.footertext, client.user.avatarURL);
   message.channel.send(embed);

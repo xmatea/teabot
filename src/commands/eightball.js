@@ -3,7 +3,8 @@ exports.meta = {
   desc: "In desperate need of advice? Ask the magic eightball!",
   usage: "Usage: <command> <question>",
   module: "Fun",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.response = [

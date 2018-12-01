@@ -3,7 +3,8 @@ exports.meta = {
   usage: "Usage: <command> <text>",
   desc: "Make me say anything!",
   module: "Fun",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.fn = function(client, message, args) {
@@ -12,7 +13,9 @@ exports.fn = function(client, message, args) {
     return;
   }
 
-  message.delete().catch(O_o=>{});
+  if(client.user.hasPermission("MANAGE_MESSAGES")) {
+    message.delete().catch(O_o=>{});
+  }
 
   message.channel.startTyping(1);
   client.setTimeout(function(){message.channel.send(args.join(" "))}, 2500);

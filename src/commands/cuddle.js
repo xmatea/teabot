@@ -3,7 +3,8 @@ exports.meta = {
   usage: "Usage: <command> <user>",
   desc: "Cuddle someone...",
   module: "Gifs",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.fn = function(client, message, args, Discord) {
@@ -19,7 +20,6 @@ exports.fn = function(client, message, args, Discord) {
         user = prop.user.username;
       }
   }
-
   exports.speech = {
     defUser: `${message.author.username} is cuddling with ${user} <3 `,
     undefUser: `${message.author.username} could really use some cuddles...`,
@@ -29,13 +29,15 @@ exports.fn = function(client, message, args, Discord) {
   let desc;
   if(args === undefined || args.length == 0) {
      desc = this.speech.undefUser;
-
-   } else if(prop.user.tag === message.author.tag) {
-     desc = this.speech.userSelf;
-
-   } else {
-     desc = this.speech.defUser;
-   }
+   } else if(user.startsWith("<@")) {
+       if(prop.user.tag === message.author.tag) {
+         desc = this.speech.userSelf;
+       } else {
+         desc = this.speech.defUser;
+       }
+     } else {
+      desc = this.speech.defUser;
+    }
 
    const cuddle = require("./../lib/gifs/cuddlelib.js");
 
