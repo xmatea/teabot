@@ -3,7 +3,8 @@ exports.meta = {
   usage: "Usage: <command> <user>",
   desc: "When something makes you a litte uwu",
   module: "Gifs",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.fn = function(client, message, args, Discord) {
@@ -20,22 +21,26 @@ exports.fn = function(client, message, args, Discord) {
       }
   }
 
+
   exports.speech = {
-    defUser: `${user} made ${message.author.username} blush heheh `,
+    defUser: `${user} made ${message.author.username} blush!`,
     undefUser: `${message.author.username} is blushing...`,
     userSelf: `Congratulations, ${message.author.username}. You either fucked up or made yourself blush.`,
+    unknownUser: `${args[0]} made ${message.author.username} blush!`
   }
 
   let desc;
   if(args === undefined || args.length == 0) {
      desc = this.speech.undefUser;
-
-   } else if(prop.user.tag === message.author.tag) {
-     desc = this.speech.userSelf;
-
-   } else {
-     desc = this.speech.defUser;
-   }
+   } else if(args[0].startsWith("<@")) {
+       if(prop.user.tag === message.author.tag) {
+         desc = this.speech.userSelf;
+       } else {
+          desc = this.speech.defUser;
+        }
+      } else {
+         desc = this.speech.unknownUser;
+      }
 
    const blush = require("./../lib/gifs/blushlib.js");
 

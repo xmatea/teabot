@@ -13,6 +13,8 @@ const Provider = require('enmap-sqlite');
 
 client.settings = new Enmap({provider: new Provider({name: "settings"})});
 client.commands = new Discord.Collection();
+client.whitelist = new Discord.Collection();
+client.whitelist.set('cursedtea#5140', '440497131342659594');
 
 const defaultSettings = {
   prefix: "t.",

@@ -3,7 +3,8 @@ exports.meta = {
   usage: "Usage: <command> <user>",
   desc: "Be wholesome, and give a hug to someone who needs it :>",
   module: "Gifs",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.fn = function(client, message, args, Discord) {
@@ -29,13 +30,15 @@ exports.fn = function(client, message, args, Discord) {
   let desc;
   if(args === undefined || args.length == 0) {
      desc = this.speech.undefUser;
-
-   } else if(prop.user.tag === message.author.tag) {
-     desc = this.speech.userSelf;
-
-   } else {
-     desc = this.speech.defUser;
-   }
+   } else if(user.startsWith("<@")) {
+       if(prop.user.tag === message.author.tag) {
+         desc = this.speech.userSelf;
+       } else {
+         desc = this.speech.defUser;
+       }
+     } else {
+      desc = this.speech.defUser;
+    }
 
    const hug = require("./../lib/gifs/huglib.js");
 

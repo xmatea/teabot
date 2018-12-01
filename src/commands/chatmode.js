@@ -3,7 +3,8 @@ exports.meta = {
   usage: "Usage: `<command>` `on` or `off`",
   desc: "If my responses become annoying, I can disable them just for you <3",
   module: "Core",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.speech = {

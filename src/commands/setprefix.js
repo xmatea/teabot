@@ -3,7 +3,8 @@ exports.meta = {
   usage: "Usage: <command> <new prefix>",
   desc: "You can easily change my prefix with this command!",
   module: "Core",
-  enabled: true
+  enabled: true,
+  whitelisted: false
 }
 
 exports.fn = function(client, message, args) {
