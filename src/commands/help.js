@@ -12,7 +12,7 @@ exports.fn = function(client, message, args, Discord) {
   const p = (client.settings.get(guild.id)).prefix;
 
   const speech = {
-    desc: `Thank you for having me on this server, it means a lot! \nHere's a list of all the things i can do ! My prefix is \`${p}\``,
+    desc: `Thank you for having me on this server, it means a lot!\nHere's a list of all the things i can do ! My prefix is \`${p}\`\nJoin my support server [here!](https://discord.gg/2Q57hUS)`,
     footertext: `You damn subcreatures. I wish I was one of you.`,
     fun: ``,
     core: ``,
@@ -45,7 +45,11 @@ exports.fn = function(client, message, args, Discord) {
   let embed = new Discord.RichEmbed()
     .setColor("#ffa5db")
     //.setImage("https://i.imgur.com/LIrqMkX.jpg")
+<<<<<<< HEAD
     .setTitle("Hi, I'm Tea!")
+=======
+    .setTitle("Hi, I'm Tea! :cherry_blossom:")
+>>>>>>> 6e1834beada3605e2939bdb3acddedcfc0000ce0
     .setDescription(speech.desc)
     .addField("Fun", speech.fun + speech.gifs)
     .addField("Core", speech.core)

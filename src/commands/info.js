@@ -23,8 +23,13 @@ exports.fn =  function (client, message, args, Discord) {
 
   if (args[0] === "guilds") {
     let guildlist = "";
+<<<<<<< HEAD
     client.guilds.forEach(function(id, name) {
       guildlist = guildlist + id + " | ID: " + name + "\n";
+=======
+    client.guilds.forEach(function(name, id) {
+    guildlist = guildlist + name + " | ID: " + id + " | " + client.guilds.get(id).members.count + " members\n";
+>>>>>>> 6e1834beada3605e2939bdb3acddedcfc0000ce0
     });
 
     let embed = new Discord.RichEmbed()
