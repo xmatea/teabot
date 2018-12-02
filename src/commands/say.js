@@ -12,10 +12,8 @@ exports.fn = function(client, message, args) {
     message.channel.send(this.meta.usage);
     return;
   }
-  
-  if(message.channel.me.hasPermissions('MANAGE_MESSAGES')) {
-    message.delete().catch(O_o=>{});
-  }
+
+  message.delete().catch(O_o=>{});
 
   message.channel.startTyping(1);
   client.setTimeout(function(){message.channel.send(args.join(" "))}, 2500);

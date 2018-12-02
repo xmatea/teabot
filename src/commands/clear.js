@@ -12,13 +12,8 @@ exports.speech = {
 }
 
 exports.fn = function(client, message, args) {
-  if (message.author.hasPermission("MANAGE_MESSAGES")) {
       message.channel.fetchMessages().then(function(list){
-        message.channel.bulkDelete(list);
+      message.channel.bulkDelete(list);
     }, function(err){
       message.channel.send("Error: Could not clear channel.")});
-
-  } else {
-    message.channel.send(this.speech.noPerm)
-  }
 }
