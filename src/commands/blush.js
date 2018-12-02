@@ -8,7 +8,6 @@ exports.meta = {
 }
 
 exports.fn = function(client, message, args, Discord) {
-  if (!(message.channel.me.hasPermissions('SEND_MESSAGES'))) return;
   const guild = message.guild;
   let user = args[0];
   let prop;

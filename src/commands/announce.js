@@ -9,7 +9,6 @@ exports.meta = {
 
 
 exports.fn = function(client, message, args) {
-  if (!(message.channel.me.hasPermissions('SEND_MESSAGES'))) return;
   if (args === undefined || args.length == 0) {
     message.channel.send(this.meta.usage);
     return;
