@@ -1,7 +1,7 @@
 exports.meta = {
   name: "chatmode",
   usage: "Usage: `<command>` `on` or `off`",
-  desc: "If my responses become annoying, I can disable them just for you <3",
+  desc: "I tend to reply to some chat messages. If it gets annoying, I can disable them just for you <3",
   module: "Core",
   enabled: true,
   whitelisted: false
