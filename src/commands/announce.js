@@ -15,9 +15,7 @@ exports.fn = function(client, message, args) {
     return;
   }
     const Discord = require('discord.js');
-  if(client.user.hasPermission("MANAGE_MESSAGES")) {
     message.delete().catch(O_o=>{});
-  }
 
     message.channel.startTyping(1);
     client.setTimeout(function(){message.channel.send(new Discord.RichEmbed()
