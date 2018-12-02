@@ -15,6 +15,7 @@ exports.speech = {
 }
 
 exports.fn = function(client, message, args) {
+  if (!(message.channel.me.hasPermissions('SEND_MESSAGES'))) return;
   const guildConf = client.settings.get(message.guild.id);
   const author = message.content.author;
 

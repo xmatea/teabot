@@ -9,13 +9,15 @@ exports.meta = {
 
 
 exports.fn = function(client, message, args) {
-
+  if (!(message.channel.me.hasPermissions('SEND_MESSAGES'))) return;
   if (args === undefined || args.length == 0) {
     message.channel.send(this.meta.usage);
     return;
   }
     const Discord = require('discord.js');
-    message.delete().catch(O_o=>{});
+    if(message.channel.me.hasPermissions('MANAGE_MESSAGES')) {
+      message.delete().catch(O_o=>{});
+    }
 
     message.channel.startTyping(1);
     client.setTimeout(function(){message.channel.send(new Discord.RichEmbed()
