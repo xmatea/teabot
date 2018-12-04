@@ -18,7 +18,7 @@ client.whitelist.set('cursedtea#5140', '440497131342659594');
 
 const defaultSettings = {
   prefix: "t.",
-  chatMode: false,
+  chatMode: true,
 }
 const metadata = [];
 
@@ -55,4 +55,4 @@ client.on("ready", async() => require('./src/events/ready.js')(client, defaultSe
 client.on("message", async(message) => require("./src/events/message.js")(client, message, Discord));
 
 //LOGIN
-client.login(process.env.MTOKEN);
+client.login(process.env.TOKEN);
