@@ -45,11 +45,7 @@ exports.fn = function(client, message, args, Discord) {
   let embed = new Discord.RichEmbed()
     .setColor("#ffa5db")
     //.setImage("https://i.imgur.com/LIrqMkX.jpg")
-<<<<<<< HEAD
-    .setTitle("Hi, I'm Tea!")
-=======
     .setTitle("Hi, I'm Tea! :cherry_blossom:")
->>>>>>> 6e1834beada3605e2939bdb3acddedcfc0000ce0
     .setDescription(speech.desc)
     .addField("Fun", speech.fun + speech.gifs)
     .addField("Core", speech.core)

@@ -2,19 +2,11 @@ exports.meta = {
   name: "test",
   desc: "A simple test command for debugging.",
   module: "Core",
-<<<<<<< HEAD
-  enabled: false,
-=======
   enabled: true,
->>>>>>> 6e1834beada3605e2939bdb3acddedcfc0000ce0
   whitelisted: false
 };
 
 exports.fn = function (client, message) {
-<<<<<<< HEAD
-    client.whitelist.set(message.author.tag, message.author.id);
-    console.log(client.whitelist);
-=======
   message.channel.send({embed: {
   "title": ":cherry_blossom::tea:Welcome to my Teaclub:tea::cherry_blossom:",
   "description": "Thanks for joining my support server! \n" +
@@ -46,5 +38,4 @@ exports.fn = function (client, message) {
   ]
 }
 });
->>>>>>> 6e1834beada3605e2939bdb3acddedcfc0000ce0
 }

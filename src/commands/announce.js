@@ -7,24 +7,26 @@ exports.meta = {
   whitelisted: false
 }
 
-
 exports.fn = function(client, message, args) {
+  exports.speech = {
+    maxlimit: "Woah there... I'm not allowed to embed a message that long! The limit is 2000 characters."
+  }
+
+  let myrole = message.guild.me.hasPermission("MANAGE_MESSAGES");
+  if (myrole) {
+    message.delete().catch(O_o=>{});
+  }
 
   if (args === undefined || args.length == 0) {
     message.channel.send(this.meta.usage);
     return;
   }
     const Discord = require('discord.js');
-  if(client.user.hasPermission("MANAGE_MESSAGES")) {
-    message.delete().catch(O_o=>{});
-  }
-
-
     message.channel.startTyping(1);
-    client.setTimeout(function(){message.channel.send(new Discord.RichEmbed()
+    client.setTimeout(function(){
+      message.channel.send(new Discord.RichEmbed()
       .setColor("#ffa7ad")
       .setDescription(args.join(" ")))
     }, 2500);
-
     message.channel.stopTyping(true);
 }
