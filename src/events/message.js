@@ -13,10 +13,17 @@ module.exports = (client, message, Discord, userCooldown)  => {
      return;
   }
 
+  if (!userCooldown[message.author.id]) {
+        userCooldown[message.author.id] = true;
+
   if (guildConf.chatMode) {
     if (responses.includes(message.content.toLowerCase())) {
         require("./../core/responder.js").fn(client, message, responses);
     }
+  }
+    setTimeout(() => {
+        userCooldown[message.author.id] = false;
+    }, 3000) // 3 seconds
   }
 
   if (!(message.content.startsWith(guildConf.prefix))) return;
