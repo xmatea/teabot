@@ -9,24 +9,32 @@ exports.meta = {
 
 exports.fn =  function (client, message, args, Discord) {
 
+  if (args[0] === "status") {
+
+    message.channel.send(new Discord.RichEmbed()
+    .setTitle(":love_letter: Status:")
+    .setColor("#fffce8")
+    .setDescription(`Guild count: ${client.guilds.size}\n`+
+    `User count: ${client.users.size}\n`+
+    `Channel count: ${client.channels.size}`));
+
+    var interval = setInterval (function () {
+      message.channel.send(new Discord.RichEmbed()
+        .setTitle(":love_letter: Status:")
+        .setColor("#fffce8")
+        .setDescription(`Guild count: ${client.guilds.size}\n`+
+        `User count: ${client.users.size}\n`+
+        `Channel count: ${client.channels.size}`));
+      }  , 600 * 600 * 10 * 0.5); //sends every 0.5 hour
 
 
-  if (args === undefined || args.length == 0) {
-    message.channel.send("```elevated commands list:\n"+
-    "\nguilds (-ls)"+
-    "\nlog"+
-    "\nvote```");
-  }
-
-  if (args[0] === "log") {
+  } else if (args[0] === "log") {
     message.channel.send("https://zeit.co/dashboard/deployments");
   }
-
-  if (args[0] === "vote") {
+  else if (args[0] === "vote") {
     message.channel.send("https://discordbots.org/bot/474652348749316096/");
   }
-
-  if (args[0] === "guilds") {
+  else if (args[0] === "guilds") {
     if (args[1] === "ls") {
       //LIST ALL GUILDS
       let guildlist = "";
@@ -43,12 +51,16 @@ exports.fn =  function (client, message, args, Discord) {
     } else {
       //GENERAL GUILD INFO
         let embed = new Discord.RichEmbed()
-        .setTitle("Status:")
+        .setTitle("General guild info:")
         .setDescription(`Guild count: ${client.guilds.size}\n`+
         `User count: ${client.users.size}\n`+
         `Channel count: ${client.channels.size}`)
         message.channel.send(embed);
-
       }
+  } else {
+    message.channel.send("```elevated commands list:\n"+
+    "\nguilds (-ls)"+
+    "\nlog"+
+    "\nvote```");
   }
 }
