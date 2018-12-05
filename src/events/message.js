@@ -1,4 +1,5 @@
-module.exports = (client, message, Discord)  => {
+module.exports = (client, message, Discord, userCooldown)  => {
+
   if (message.guild === null) return;
   const guildConf = client.settings.get(message.guild.id);
   const responses = Object.keys(require("./../lib/responses.json"));
