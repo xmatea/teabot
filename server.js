@@ -52,7 +52,8 @@ client.on("guildDelete", guild => {
 });
 
 client.on("ready", async() => require('./src/events/ready.js')(client, defaultSettings));
-client.on("message", async(message) => require("./src/events/message.js")(client, message, Discord));
+let userCooldown = {};
+client.on("message", async(message) => require("./src/events/message.js")(client, message, Discord, userCooldown));
 
 //LOGIN
 client.login(process.env.TOKEN);

@@ -14,6 +14,7 @@ exports.fn = function(client, message, args) {
     return;
   }
 
+  let myrole = message.guild.me.hasPermission("MANAGE_MESSAGES");
   if (myrole) {
     message.delete().catch(O_o=>{});
   }

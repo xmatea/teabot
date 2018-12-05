@@ -12,7 +12,7 @@ exports.fn =  function (client, message, args, Discord) {
 
 
   if (args === undefined || args.length == 0) {
-    message.channel.send("```elevated commands list: "+
+    message.channel.send("```elevated commands list:\n"+
     "\nguilds (-ls)"+
     "\nlog"+
     "\nvote```");
