@@ -20,7 +20,9 @@ const defaultSettings = {
   prefix: "t.",
   chatMode: true,
 }
-const metadata = [];
+
+var userCooldown = {};
+var commandCooldown = {};
 
 fs.readdir("./src/commands/", (err, files) => {
   files.forEach(f => {
@@ -52,7 +54,6 @@ client.on("guildDelete", guild => {
 });
 
 client.on("ready", async() => require('./src/events/ready.js')(client, defaultSettings));
-let userCooldown = {};
 client.on("message", async(message) => require("./src/events/message.js")(client, message, Discord, userCooldown));
 
 //LOGIN
