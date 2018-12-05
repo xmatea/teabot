@@ -30,16 +30,11 @@ exports.fn =  function (client, message, args, Discord) {
   } else if (args[0] === "guilds") {
         //GUILD LIST
         if (args[1] === "ls") {
-        let guildlist = "";
         client.guilds.forEach(function(id, name) {
-          guildlist = `${guildlist}${id} / ${name} / ${client.guilds.get(name).members.size} members\n`;  
+          message.channel.send(`${id} / ${name} / ${client.guilds.get(name).members.size} members\n`);
         });
 
-        message.channel.send(new Discord.RichEmbed()
-        .setTitle("Status: Guilds")
-        .addField(`List of all guilds:`, guildlist)
-        .addField("-", `Count: ${client.guilds.size}`));
-
+        message.channel.send(`Done! Count: ${client.guilds.size}`);
       } else {
         //GENERAL GUILD INFO
           let embed = new Discord.RichEmbed()
