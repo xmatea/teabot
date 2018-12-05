@@ -9,32 +9,26 @@ exports.meta = {
 
 exports.fn =  function (client, message, args, Discord) {
 
-  if (args[0] === "status") {
-
-    message.channel.send(new Discord.RichEmbed()
-    .setTitle(":love_letter: Status:")
-    .setColor("#fffce8")
-    .setDescription(`Guild count: ${client.guilds.size}\n`+
-    `User count: ${client.users.size}\n`+
-    `Channel count: ${client.channels.size}`));
-
-    var interval = setInterval (function () {
+  switch(args[0]) {
+    case "status" :
       message.channel.send(new Discord.RichEmbed()
-        .setTitle(":love_letter: Status:")
-        .setColor("#fffce8")
-        .setDescription(`Guild count: ${client.guilds.size}\n`+
-        `User count: ${client.users.size}\n`+
-        `Channel count: ${client.channels.size}`));
-      }  , 600 * 600 * 10 * 0.5); //sends every 0.5 hour
+      .setTitle(":love_letter: Status:")
+      .setColor("#fffce8")
+      .setDescription(`Guild count: ${client.guilds.size}\n`+
+      `User count: ${client.users.size}\n`+
+      `Channel count: ${client.channels.size}`));
 
+      var interval = setInterval (function () {
+        message.channel.send(new Discord.RichEmbed()
+          .setTitle(":love_letter: Status:")
+          .setColor("#fffce8")
+          .setDescription(`Guild count: ${client.guilds.size}\n`+
+          `User count: ${client.users.size}\n`+
+          `Channel count: ${client.channels.size}`));
+        }  , 600 * 600 * 10 * 1); //sends every 0.5 hour
+        break;
 
-  } else if (args[0] === "log") {
-    message.channel.send("https://zeit.co/dashboard/deployments");
-  }
-  else if (args[0] === "vote") {
-    message.channel.send("https://discordbots.org/bot/474652348749316096/");
-  }
-  else if (args[0] === "guilds") {
+    case "guilds":
     if (args[1] === "ls") {
       //LIST ALL GUILDS
       let guildlist = "";
@@ -57,10 +51,21 @@ exports.fn =  function (client, message, args, Discord) {
         `Channel count: ${client.channels.size}`)
         message.channel.send(embed);
       }
-  } else {
-    message.channel.send("```elevated commands list:\n"+
-    "\nguilds (-ls)"+
-    "\nlog"+
-    "\nvote```");
+
+      break;
+
+      case "log":
+        message.channel.send("https://zeit.co/dashboard/deployments");
+          break;
+
+      case "vote":
+        message.channel.send("https://discordbots.org/bot/474652348749316096/");
+          break;
+
+    default:
+      message.channel.send("```elevated commands list:\n"+
+      "\nguilds (-ls)"+
+      "\nlog"+
+      "\nvote```");
   }
 }
