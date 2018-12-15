@@ -7,14 +7,16 @@ exports.meta = {
   whitelisted: false
 }
 
-exports.fn = function(client, message, args) {
-exports.speech = {
+exports.fn = function(client, message, args, guild) {
+const Guild = require("./../core/models/guild.js");
+let role = message.member.hasPermission("ADMINISTRATOR");
+const speech = {
   changed: `Changed my prefix to `,
   maxlimit: `The new prefix cannot be longer than 10 characters.`,
   denied: `I'm sorry ${message.author}, but you need to be an Administrator to perform that command...`,
+  err: `Oh no! It looks like something went wrong...\nIf you need any help, please contact **cursedtea#5140**`
 }
 
-let role = message.member.hasPermission("ADMINISTRATOR");
 
   if (!role) {
     message.channel.send(this.speech.denied);
@@ -31,9 +33,17 @@ let role = message.member.hasPermission("ADMINISTRATOR");
       return;
 
     } else {
-      guildConf = client.settings.get(message.guild.id);
-      guildConf.prefix = args[0];
-      client.settings.set(message.guild.id, guildConf);
-      message.channel.send(this.speech.changed + guildConf.prefix);
-    }
+      Guild.updateOne(
+        {_id: message.guild.id},
+        { $set:
+          {"config.prefix": args[0]}
+    }, function (err, doc) {
+      if(err) {
+          message.channel.send(speech.err);
+          console.log(err);
+        }
+        doc.save;
+      });
+      message.channel.send(speech.changed + args[0]);
+  }
 }

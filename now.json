@@ -1,6 +1,6 @@
 {
   "env": {
-    "TOKEN": "@acme-api-key"
+    "TOKEN": "@acme-api-key",
+    "DBAUTH": "mongodb-matea-pass@"
   }
 }
- 

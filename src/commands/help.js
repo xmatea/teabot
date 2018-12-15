@@ -7,7 +7,8 @@ exports.meta = {
   whitelisted: false
 }
 
-exports.fn = function(client, message, args, Discord) {
+exports.fn = function(client, message, args) {
+  const Discord = require('discord.js');
   var guild = message.guild;
   const p = (client.settings.get(guild.id)).prefix;
 

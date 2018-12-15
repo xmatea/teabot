@@ -7,8 +7,8 @@ exports.meta = {
   whitelisted: true
 }
 
-exports.fn =  function (client, message, args, Discord) {
-
+exports.fn =  function (client, message, args) {
+  const Discord = require('discord.js');
   if (args[0] === "init") {
     message.channel.send(new Discord.RichEmbed()
     .setTitle(":love_letter: Status:")

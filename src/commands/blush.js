@@ -7,7 +7,7 @@ exports.meta = {
   whitelisted: false
 }
 
-exports.fn = function(client, message, args, Discord) {
+exports.fn = function(client, message, args) {
   const guild = message.guild;
   let user = args[0];
   let prop;
