@@ -7,7 +7,8 @@ exports.meta = {
   whitelisted: true
 }
 
-exports.fn =  function (client, message, args, Discord) {
+exports.fn =  function (client, message, args) {
+  const Discord = require('discord.js');
   if (args === undefined || args.length == 0) {
     let embed = new Discord.RichEmbed()
     .setTitle("Status:")
