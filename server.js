@@ -9,16 +9,15 @@ const config = require("./config.json");
 const Guild = require("./src/core/models/guild.js");
 const client = new Discord.Client();
 
-mongoose.connect('mongodb+srv://matea:'+process.env.DBAUTH+'@cluster0-v6b6x.mongodb.net/teabot?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://matea:'+process.env.DBAUTH+'@cluster0-v6b6x.mongodb.net/tbeta?retryWrites=true', { useNewUrlParser: true });
 
 const defaultSettings = {
-  prefix: "t.",
+  prefix: "b.",
   chatMode: true,
 };
 
 client.commands = new Discord.Collection();
 client.whitelist = new Discord.Collection();
-client.whitelist.set('cursedtea#5140', '440497131342659594');
 
 fs.readdir("./src/commands/", (err, files) => {
   files.forEach(f => {

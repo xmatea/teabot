@@ -5,6 +5,7 @@ const schema = new Schema({
     _id: String,
     guildName: String,
     guildSize: Number,
+    members: Array,
     config: {
       prefix: String,
       chatMode: Boolean

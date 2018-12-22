@@ -7,16 +7,16 @@ exports.meta = {
   whitelisted: false
 }
 
-exports.fn = function(client, message, args) {
+exports.fn = function(client, message, args, guild) {
   const Discord = require('discord.js');
-  var guild = message.guild;
-  const p = (client.settings.get(guild.id)).prefix;
+  let p = guild.config.prefix;
 
   const speech = {
     desc: `Thank you for having me on this server, it means a lot!\nHere's a list of all the things i can do ! My prefix is \`${p}\`\nJoin my support server [here!](https://discord.gg/2Q57hUS)`,
     footertext: `You damn subcreatures. I wish I was one of you.`,
     fun: ``,
     core: ``,
+    eco: ``,
     mod: ``,
     gifs: ``
   };
@@ -37,6 +37,10 @@ exports.fn = function(client, message, args) {
       speech.core = speech.core + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
       break;
 
+      case "Economy":
+      speech.eco = speech.eco + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
+      break;
+
       case "Moderation":
       speech.mod = speech.mod + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
       break;
@@ -45,11 +49,11 @@ exports.fn = function(client, message, args) {
 
   let embed = new Discord.RichEmbed()
     .setColor("#ffa5db")
-    //.setImage("https://i.imgur.com/LIrqMkX.jpg")
     .setTitle("Hi, I'm Tea! :cherry_blossom:")
     .setDescription(speech.desc)
     .addField("Fun", speech.fun + speech.gifs)
     .addField("Core", speech.core)
+    .addField("Economy", speech.eco)
     .addField("Moderation", speech.mod)
     .setTimestamp(new Date())
     .setFooter(speech.footertext, client.user.avatarURL);
