@@ -1,7 +1,7 @@
 module.exports = async (client, message)  => {
   const Guild = require("./../core/models/guild.js");
   const responses = Object.keys(require("./../lib/responses.json"));
-  const findObj = (id, model) => { return Guild.findById(id).exec() };
+  const findObj = (id) => { return Guild.findById(id).exec() };
   const guild = await findObj(message.guild.id);
   const args = message.content.slice(guild.config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
