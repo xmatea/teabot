@@ -21,7 +21,7 @@ module.exports = async (client, message)  => {
     }
       setTimeout(() => {
           cooldown[message.author.id] = false;
-      }, 4000) // 4 seconds
+      }, 5000) // 5 seconds
     } 
     if (!(client.commands.get(command))) return;
 

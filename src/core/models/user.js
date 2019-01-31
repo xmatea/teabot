@@ -10,6 +10,7 @@ const schema = new Schema({
       lastClaimed: Date
     },
     inventory: Array,
+    whitelisted: Boolean,
     config: {}
 });
 

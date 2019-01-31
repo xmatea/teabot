@@ -1,22 +1,17 @@
 module.exports = (client, defaultSettings) => {
-
-  const mongoose = require('mongoose');
   const Guild = require('./../core/models/guild.js');
   const User = require('./../core/models/user.js');
+  const config = require('./../../config.js');
 
   client.guilds.forEach(guild => {
     Guild.findById(guild.id).then(doc => {
       if (doc) { return }
       else {
-        let membersArray = [];
-        guild.members.forEach(m => {
-          membersArray.push(m.user.id);
-        });
         const guildInst = new Guild({
           _id: guild.id,
           guildName: guild.name,
           guildSize: guild.members.size,
-          members: membersArray,
+          ownerId: guild.ownerID,
           config: {
             prefix: defaultSettings.prefix,
             chatMode: defaultSettings.chatMode
@@ -41,7 +36,8 @@ client.users.forEach(user => {
         bank: {
           bal: 100,
           lastClaimed: null
-        }
+        },
+        whitelisted: config.defaultSettings.whitelisted
       });
       userInst.save()
         .then(result => console.log(result))

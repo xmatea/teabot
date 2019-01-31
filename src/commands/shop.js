@@ -10,17 +10,38 @@ exports.fn = function (client, message, args, guild) {
     const Discord = require('discord.js');
     const User = require('./../core/models/user.js');
     const itemObj = require("./../lib/items/items.js");
-    const crates = require("./../core/crates.js")
-    let errmsg = "An error occurred! Contact **cursedtea#5140**";
-    let nodoc = "Could not find document for " + message.author.id;
-    let p = guild.config.prefix;
+    const crates = require("./../core/crates.js");
+    const p = guild.config.prefix;
+    const speech = {
+        shopdesc: `I really appreciate a good cup of tea. Because of that, I own so many tea-related items! But the thing is, having all these digital teacups and cakes isn't any fun when I'm just by myself... \n\nThat's why I started packing up these mystery crates filled with collectibles so that you and your friends can collect and trade them!\n To buy one, type \`${p}shop buy <crate name>\`\n\n`,
+        errmsg: "An error occurred! Contact **cursedtea#5140**",
+        nodoc: "Could not find document for " + message.author.id
 
+    }
     if (args === undefined || args.length == 0) {
-        message.channel.send(new Discord.RichEmbed()
-            .setTitle("Shop")
-            .setColor("A96075")
-            .setDescription(`Welcome to the store **${message.author.username}**!\nTo buy an item, type \`${p}shop buy <item>\`\nFor more info, type \`${p}shop help\``)
-            .addField("Crates", `small crate: **${crates.smallCrate.price}** :cherry_blossom:\nmedium crate: **${crates.mediumCrate.price}** :cherry_blossom:\nlarge crate: **${crates.largeCrate.price}** :cherry_blossom:`));
+        const embed = {
+            "title": `Welcome to the shop, ${message.author.username}!`,
+            "description": speech.shopdesc,
+            "color": 11100277,
+            "fields": [
+              {
+                "name": "Small crate",
+                "value": `Price: **${crates.smallCrate.price}** :cherry_blossom: \nThis crate contains __two__ items.`,
+                "inline": true
+              },
+              {
+                "name": "Medium crate",
+                "value": `Price: **${crates.mediumCrate.price}** :cherry_blossom: \nThis crate contains __three__ items.`,
+                "inline": true
+              },
+              {
+                "name": "Large crate",
+                "value": `Price: **${crates.largeCrate.price}** :cherry_blossom: \nThis crate contains __four__ items.`,
+                "inline": true
+              }
+            ]
+          };
+          message.channel.send({ embed });
     }
 
     if (args[0] === "buy") {
@@ -39,132 +60,110 @@ exports.fn = function (client, message, args, guild) {
                 itemsToAdd.push(obj);
             }
 
-            // the code should check if there is any item in the items variable that matches any value in inventory array.
-            // the two updateOne()s work seperately, but only one of them should run, depending on whether the document exists or not.
-            // i cant find a way to do this without explicitly iterating through the document as well as the items array
-            // sorry if my explanation is bad
+            var itemsadded = [];
+            User.findById(message.author.id, function (err, doc) {
+                if(err) {message.channel.send(speech.errmsg); return console.log(err)};
+                if(!doc) {message.channel.send(speech.errmsg); return console.log(nodoc)};
 
-            for (let j = 0; j < items.length; j++) {
-                var doc = User.findOne({ _id: message.author.id }).exec();
-                doc.then(function (result) {
-                    var item = items[j];
-                    console.log(item);
-                    console.log(result.inventory);
-                    console.log(containsObject(item, result.inventory));
-                    //IF THE INVENTORY IS EMPTY, DO THIS
-                    if ((result.inventory.length = 0)) {
-                        console.log("inventory was empty. adding " + items[j].name);
-                        User.updateOne(
-                            { _id: message.author.id, },
-                            { $inc: { "bank.bal": (crate.price * -1) }, 
-                            $push: { inventory: items[j] } }, (err, doc) =>{ 
-                                if (err) { 
-                                    message.channel.send(errmsg); 
-                                    return console.log(err) 
-                                }
-                        });
-                    //IF THE INVENTORY IS NOT EMPTY, DO THIS
-                    } else {
-                        // BUT THE STATEMENT BELOW IS NEVER TRUE
-                        if (containsObject(item, result.inventory)) {
-                        console.log("inventory was not empty. already exists " + items[j].name );
-                        User.updateOne(
-                            { _id: message.author.id, 'inventory.name': items[j].name },
-                            { $inc: { 'inventory.$.qty': 1 } }, (err, doc) => {
-                                if (err) { 
-                                    message.channel.send(errmsg);
-                                    return console.log(err); 
-                                } 
-                        });
+                if (doc.bank.bal < crate.price) {
+                    return message.channel.send("You need more money!");
 
-                        //THIS CODE RUNS HOWEVER
-                        } else if (!containsObject(items[j], result.inventory)) {
-                            console.log("inventory was not empty. did not exist " + items[j].name );
-                            User.updateOne(
-                                { _id: message.author.id, },
-                                { $inc: { "bank.bal": (crate.price * -1) }, 
-                                $push: { inventory: items[j] } }, (err, doc) =>{ 
-                                    if (err) { 
-                                        message.channel.send(errmsg); 
-                                        return console.log(err) 
-                                    }
-                            });
-                        }
-                    }
-                });
-            }
-                
-
-            function containsObject(obj, list) {
-                var x;
-                for (x in list) {
-                    if (list.hasOwnProperty(x) && list[x] === obj) {
-                        return true;
-                    }
-                }
-            
-                return false;
-            }
-
-            if (message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-                message.channel.send(new Discord.RichEmbed()
-                    .setDescription(`**${message.author.username}** just bought a **${crate.name}**!`)
-                    .setColor("A96075"))
-                    .then((message) => {
-                        setTimeout(function () {
-                            message.edit(new Discord.RichEmbed()
-                                .setDescription(`Opening the crate...`)
-                                .setColor("A96075"))
-                        }, 1500);
-                        message.delete(5000);
+                } else {
+                    User.updateOne(
+                        { _id: message.author.id},
+                        { $inc: { 'bank.bal': (crate.price  * -1) } 
                     });
 
-                setTimeout(() => {
-                    for (let i = 0; i < items.length; i++) {
-                        message.channel.send(new Discord.RichEmbed()
-                            .setTitle(`You recieved an item! [${i + 1}/${crate.size}]`)
-                            .setDescription(`1x **${items[i].value}** ${items[i].name}`)
-                            .setColor("A96075")
-                            .setThumbnail(items[i].img64));
+                    for (let j = 0; j < items.length; j++) {
+                        User.findOne({ _id: message.author.id, 'inventory.name': items[j].name }, function (err, doc) {
+                            if (doc || (itemsadded.includes(items[j].name))) {
+                                User.updateOne(
+                                    { _id: message.author.id, 'inventory.name': items[j].name },
+                                    { $inc: { 'inventory.$.qty': 1 } },
+                                    (err) => {
+                                        if (err) {
+                                            message.channel.send(speech.errmsg);
+                                            return console.log(err);
+                                        }
+                                    });
+                            } else {
+                                itemsadded.push(items[j].name);
+                                User.updateOne(
+                                    { _id: message.author.id },
+                                    { $push: { 'inventory': items[j] } },
+                                    (err) => {
+                                        if (err) {
+                                            message.channel.send(speech.errmsg);
+                                            return console.log(err);
+                                        }
+                                    });
+                            }
+
+                        });
+
                     }
-                }, 5000)
-            } else {
-                for (let i = 0; i < items.length; i++) {
-                    message.channel.send(new Discord.RichEmbed()
-                        .setTitle(`You recieved an item! [${i + 1}/${crate.size}]`)
-                        .setDescription(`1x **${items[i].value}** ${items[i].name}`)
-                        .setColor("A96075")
-                        .setThumbnail(items[i].img64));
+
+                    if (message.guild.me.hasPermission("MANAGE_MESSAGES")) {
+                        message.channel.send(new Discord.RichEmbed()
+                            .setDescription(`**${message.author.username}** just bought a **${crate.name}**!`)
+                            .setColor("A96075"))
+                            .then((message) => {
+                                setTimeout(function () {
+                                    message.edit(new Discord.RichEmbed()
+                                        .setDescription(`Opening the crate...`)
+                                        .setColor("A96075"))
+                                }, 1500);
+                                message.delete(5000);
+                            });
+
+                        setTimeout(() => {
+                            for (let i = 0; i < items.length; i++) {
+                                message.channel.send(new Discord.RichEmbed()
+                                    .setTitle(`${message.author.username} recieved an item! [${i + 1}/${crate.size}]`)
+                                    .setDescription(`1x **${items[i].value}** ${items[i].name}`)
+                                    .setColor("A96075")
+                                    .setThumbnail(items[i].img64));
+                            }
+                        }, 5000)
+                    } else {
+                        for (let i = 0; i < items.length; i++) {
+                            message.channel.send(new Discord.RichEmbed()
+                                .setTitle(`${message.author.username} recieved an item! [${i + 1}/${crate.size}]`)
+                                .setDescription(`1x **${items[i].value}** ${items[i].name}`)
+                                .setColor("A96075")
+                                .setThumbnail(items[i].img64));
+                        }
+                    }
                 }
-            }
+
+            });
         }
 
-        function getObj() {
-            function weightedRand(spec) {
-                var i, sum = 0, r = Math.random();
+                function getObj() {
+                    function weightedRand(spec) {
+                        var i, sum = 0, r = Math.random();
+                        for (i in spec) {
+                            sum += spec[i];
+                            if (r <= sum) return i;
+                        }
+                    }
 
-                for (i in spec) {
-                    sum += spec[i];
-                    if (r <= sum) return i;
+                    let obj;
+                    let j = weightedRand({ 0: 0.4, 1: 0.35, 2: 0.15, 3: 0.1 });
+                    if (j == 0) {
+                        obj = itemObj.filter(item => item['value'] === "Common");
+                        return obj[Math.floor(Math.random() * obj.length)];
+                    } else if (j == 1) {
+                        obj = itemObj.filter(item => item['value'] === "Uncommon");
+                        return obj[Math.floor(Math.random() * obj.length)];
+                    } else if (j == 2) {
+                        obj = itemObj.filter(item => item['value'] === "Rare");
+                        return obj[Math.floor(Math.random() * obj.length)];
+                    } else if (j == 3) {
+                        obj = itemObj.filter(item => item['value'] === "Very rare");
+                        return obj[Math.floor(Math.random() * obj.length)];
+                    }
                 }
             }
-
-            let obj;
-            let j = weightedRand({ 0: 0.6, 1: 0.3, 2: 0.07, 3: 0.03 });
-
-            if (j == 0) {
-                obj = itemObj.common;
-                return itemObj.common[Math.floor(Math.random() * obj.length)];
-            } else if (j == 1) {
-                obj = itemObj.uncommon;
-                return itemObj.uncommon[Math.floor(Math.random() * obj.length)];
-            } else if (j == 2) {
-                obj = itemObj.rare;
-                return itemObj.rare[Math.floor(Math.random() * obj.length)];
-            } else if (j == 3) {
-                obj = itemObj.veryrare;
-                return itemObj.veryrare[Math.floor(Math.random() * obj.length)];
-            }
-        }
-    }
+            
 }

@@ -11,7 +11,7 @@ module.exports.mediumCrate = {
 }
 
 module.exports.largeCrate = {
-    price: 100,
+    price: 120,
     size: 4,
     name: "large crate"
 }

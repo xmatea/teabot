@@ -1,23 +1,13 @@
-//INITIALIZE
+//enjoy this mess :> made w love and anger
 require('http').createServer().listen(3000)
 require('dotenv').config();
-
 const Discord = require("discord.js");
 const mongoose = require('mongoose');
 const fs = require('fs');
-const config = require("./config.json");
-const Guild = require("./src/core/models/guild.js");
+const config = require("./config.js");
 const client = new Discord.Client();
-
-mongoose.connect('mongodb+srv://matea:'+process.env.DBAUTH+'@cluster0-v6b6x.mongodb.net/tbeta?retryWrites=true', { useNewUrlParser: true });
-
-const defaultSettings = {
-  prefix: "b.",
-  chatMode: true,
-};
-
 client.commands = new Discord.Collection();
-client.whitelist = new Discord.Collection();
+mongoose.connect('mongodb+srv://matea:'+process.env.DBAUTH+'@cluster0-v6b6x.mongodb.net/tbeta?retryWrites=true', { useNewUrlParser: true });
 
 fs.readdir("./src/commands/", (err, files) => {
   files.forEach(f => {
@@ -28,44 +18,14 @@ fs.readdir("./src/commands/", (err, files) => {
   });
 });
 
-//ERROR HANDLING
-process.on('unhandledRejection', (reason) => {
-  console.error(reason)
-});
-
+process.on('unhandledRejection', (reason) => { console.error(reason) });
 client.on('error', console.error);
 client.on('warn', console.warn);
-
-
-//EVENT HANDLING
-client.on("guildCreate", guild => {
-
-  const guildInst = new Guild({
-      _id: guild.id,
-      guildName: guild.name,
-      guildSize: guild.members.size,
-      config: {
-        prefix: defaultSettings.prefix,
-        chatMode: defaultSettings.chatMode
-      }
-    });
-
-  guildObj.save()
-  .then(result => console.log(result))
-  .catch(err => console.log(err))
-  console.log(`I have joined a new guild with ${(guild.members.size) - 1} users. ID: ${guild.id}`);
-
-});
-
-client.on("guildDelete", guild => {
-  Guild.deleteOne({ _id: guild.id }, function (err) {
-    if (err) console.log(err);
-  });
-  console.log(`I have left a new guild with ${(guild.members.size) - 1} users. ID: ${guild.id}`);
-});
-
-client.on("ready", async() => require('./src/events/ready.js')(client, defaultSettings));
+client.on("guildMemberAdd", member => { require('./src/events/guildMemberAdd.js')(member)});
+client.on("guildMemberRemove", member => { require('./src/events/guildMemberRemove.js')(member)});
+client.on("guildCreate", guild => { require('./src/events/guildCreate.js')(client, guild, config.defaultSettings)});
+client.on("guildDelete", guild => require('./src/events/guildDelete.js')(client, guild));
+client.on("ready", async() => require('./src/events/ready.js')(client, config.defaultSettings));
 client.on("message", async(message) => require("./src/events/message.js")(client, message));
 
-//LOGIN
 client.login(process.env.TOKEN);
