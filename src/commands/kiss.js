@@ -8,46 +8,43 @@ exports.meta = {
 }
 
 exports.fn = function(client, message, args) {
-  const Discord = require('discord.js');
-  const guild = message.guild;
-  let user = args[0];
-  let prop;
+const Discord = require('discord.js');
+const kiss = require("./../lib/gifs/kisslib.js");
+let username;
+let id;
 
-//IS ARGUMENT A USER????
-  if (!(args === undefined || args.length == 0) && user.startsWith("<@")) {
-    let id = user.substring(2).slice(0, -1);
-      if (guild.members.get(id)) {
-        prop = guild.members.get(id);
-        user = prop.user.username;
+if (!(args === undefined || args.length == 0)) {
+  id = args[0].substring(2).slice(0, -1);
+      if (id.indexOf("!") == 0) {
+        id = id.substring(1);
       }
+  if (message.guild.members.get(id)) {
+    username = message.guild.members.get(id).user.username;
   }
-
-exports.speech = {
-  defUser: `Oh look, ${message.author.username} gave ${user} a kiss!`,
-  undefUser: `${message.author.username}, are you lonely?`,
-  userSelf: `${message.author.username}, why are you kissing yourself...?`,
 }
 
-let desc;
-if(args === undefined || args.length == 0) {
-   desc = this.speech.undefUser;
- } else if(user.startsWith("<@")) {
-     if(prop.user.tag === message.author.tag) {
-       desc = this.speech.userSelf;
-     } else {
-       desc = this.speech.defUser;
-     }
-   } else {
-    desc = this.speech.defUser;
-  }
+function getDesc() {
+  if (args === undefined || args.length == 0) return speech.undefUser;
+  if (id === message.author.id) return speech.userSelf;
+  if (id === client.user.id) return speech.userMe;
+  if (!(message.guild.members.get(id))) return speech.unknownUser;
+  return speech.defUser;
+}
 
-   const kiss= require("./../lib/gifs/kisslib.js");
+let speech = {
+  defUser: `Oh look, ${message.author.username} gave ${username} a kiss!`,
+  undefUser: `${message.author.username}, are you lonely?`,
+  userSelf: `${message.author.username}, why are you kissing yourself...?`,
+  unknownUser: `I can't find ${args[0]} here, but it's okay, I'll kiss you instead :>`,
+  userMe: `Aw, i love you too ${message.author.username} <3`
+}
 
-   let embed = new Discord.RichEmbed()
-   .setDescription(`**${desc}**`)
-   .setImage(kiss.gifs[Math.floor(Math.random()* kiss.gifs.length)])
-   .setColor("#a3acff")
-   .setFooter(message.author.username + " requested this btw")
-   .setTimestamp();
-   message.channel.send(embed);
+message.channel.send(new Discord.RichEmbed()
+  .setDescription(`**${getDesc()}**`)
+  .setImage(kiss.gifs[Math.floor(Math.random() * kiss.gifs.length)])
+  .setColor("#a3acff")
+  .setFooter(message.author.username + " requested this btw")
+  .setTimestamp()
+);
+
   }

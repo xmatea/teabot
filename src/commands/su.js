@@ -1,6 +1,6 @@
 exports.meta = {
   name: "su",
-  desc: "Posts general info for the bot.",
+  desc: "whitelisted commands",
   usage: "<command>",
   module: "Core",
   enabled: true,
@@ -9,33 +9,8 @@ exports.meta = {
 
 exports.fn =  function (client, message, args) {
   const Discord = require('discord.js');
-  if (args[0] === "init") {
-    message.channel.send(new Discord.RichEmbed()
-    .setTitle(":love_letter: Status:")
-    .setColor("#fffce8")
-    .setDescription(`Guild count: ${client.guilds.size}\n`+
-    `User count: ${client.users.size}\n`+
-    `Channel count: ${client.channels.size}`));
-
-    var interval = setInterval (function () {
-      message.channel.send(new Discord.RichEmbed()
-        .setTitle(":love_letter: Status:")
-        .setColor("#fffce8")
-        .setDescription(`Guild count: ${client.guilds.size}\n`+
-        `User count: ${client.users.size}\n`+
-        `Channel count: ${client.channels.size}`));
-      }  , 600 * 600 * 10 * 1); //sends every 1 hour
-
-      //GUILD STATS
-  } else if (args[0] === "guilds") {
-        //GUILD LIST
-        if (args[1] === "ls") {
-        client.guilds.forEach(function(id, name) {
-          message.channel.send(`${id} / ${name} / ${client.guilds.get(name).members.size} members\n`);
-        });
-
-        message.channel.send(`Done! Count: ${client.guilds.size}`);
-      } else {
+  const User = require('./../core/models/user.js')
+  if (args[0] === "guilds") {
         //GENERAL GUILD INFO
           let embed = new Discord.RichEmbed()
           .setTitle("General guild info:")
@@ -43,7 +18,6 @@ exports.fn =  function (client, message, args) {
             `User count: ${client.users.size}\n`+
             `Channel count: ${client.channels.size}`);
             message.channel.send(embed);
-      }
 
       //LINK TO LOGS
     } else if (args[0] === "log") {
@@ -52,12 +26,27 @@ exports.fn =  function (client, message, args) {
       //LINK TO DISCORD.ORG
     } else if (args[0] === "vote") {
       message.channel.send("https://discordbots.org/bot/474652348749316096/");
+    } else if (args[0] == "money") {
+      if (args[1].length == 0) return;
+      if ((args[2] === undefined) || (args[2].isNaN)) return;
 
-      //LIST ALL COMMANDS(NOT DONE)
-    } else {
-      message.channel.send("```elevated commands list:\n"+
-      "\nguilds (-ls)"+
-      "\nlog"+
-      "\nvote```");
-    }
+      
+      var userid = args[1].substring(2).slice(0, -1);
+      if (userid.indexOf("!") == 0) {
+        userid = userid.substring(1);
+      }
+      console.log(userid);
+      if (!(message.guild.members.get(userid))) {
+        return message.channel.send("huh");
+      }
+        User.updateOne(
+          { _id: userid },
+          { $inc: { "bank.bal": args[2]}
+          }, function (err, doc) {
+              if (err) { message.channel.send(errmsg); console.log(err); return }
+              if(!doc) { message.channel.send(errmsg); console.log("no doc"); return }
+              message.channel.send("Success");
+          });
+      }
+    
 }

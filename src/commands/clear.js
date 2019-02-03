@@ -3,7 +3,7 @@ exports.meta = {
   usage: "Usage: <command>",
   desc: "Use this and I'll clear the chat in an instant.",
   module: "Moderation",
-  enabled: true,
+  enabled: false,
   whitelisted: false
 }
 

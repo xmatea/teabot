@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     _id: String,
     guildName: String,
-    guildSize: Number
+    guildSize: Number,
+    ownerId: String,
+    config: {
+      prefix: String,
+      chatMode: Boolean
+    }
 });
 
 module.exports = mongoose.model("Guild", schema);

@@ -7,25 +7,12 @@ exports.meta = {
   whitelisted: false
 }
 
-exports.response = [
-  "Yeah.",
-  "Yes.",
-  "No.",
-  "Probably.",
-  "Most likely ehehe...",
-  "Probably not.",
-  "Uh, no.",
-  "Nope.",
-  "Sure!",
-  "Who knows?",
-  "Depends?",
-  "Maybe?"
-];
 exports.fn = function(client, message, args) {
-
+  let response = ["Yeah.", "Yes.", "No.", "Probably.", "Most likely ehehe...", "Probably not.", "Uh, no.", "Nope.", "Sure!", "Who knows?", "Depends?", "Maybe?"];
+  
   if (args === undefined || args.length == 0) {
     message.channel.send(this.meta.usage);
   } else {
-    message.channel.send(this.response[Math.floor(Math.random() * Math.floor(this.response.length))]);
+    message.channel.send(this.response[Math.floor(Math.random() * Math.floor(response.length))]);
   }
 }

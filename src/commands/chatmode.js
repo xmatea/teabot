@@ -7,42 +7,56 @@ exports.meta = {
   whitelisted: false
 }
 
-exports.fn = function(client, message, args) {
-  exports.speech = {
+exports.fn = function(client, message, args, guild) {
+   const speech = {
     true: "Chat mode is now enabled! Thank you so much, now I have something to do!!",
     atrue: "It seems like chatmode has already been enabled.",
     false: "I see. Chat mode is now disabled. Sorry for being so annoying...",
     afalse: "It seems like chatmode has already been disabled.",
     denied: `I'm sorry ${message.author}, but you need to be an Administrator to perform that command...`,
+    err: `Oh no, it looks like something went wrong. Contact **cursedtea#5140** if this is a problem.`
   }
+  const Guild = require("./../core/models/guild.js");
 
   let role = message.member.hasPermission("ADMINISTRATOR");
   if (!role) {
-    message.channel.send(this.speech.denied);
+    message.channel.send(speech.denied);
     console.log(`Tried running command: ${this.meta.name}, failed due to user perm denial vvvvv`);
     return;
   }
 
-  const guildConf = client.settings.get(message.guild.id);
-  const author = message.content.author;
-
-  if (args[0] == "on") {
-    if (guildConf.chatMode) {
-      message.channel.send(this.speech.atrue);
+  if (args[0] == "on" ) {
+    if (guild.config.chatMode) {
+      message.channel.send(speech.atrue);
       return;
-
     } else {
-        guildConf.chatMode = true;
-        client.settings.set(message.guild.id, guildConf);
-        message.channel.send(this.speech.true);
+      Guild.updateOne(
+        {_id: message.guild.id},
+        { $set: {"config.chatMode": true}
+     }, function (err, doc) {
+        if(err) {
+            message.channel.send(speech.err);
+            console.log(err);
+          }
+          doc.save;
+       });
+       message.channel.send(speech.true);
       }
   } else if (args[0] == "off") {
-    if (!guildConf.chatMode) {
-        message.channel.send(this.speech.afalse);
+    if (!guild.config.chatMode) {
+        message.channel.send(speech.afalse);
     } else {
-      guildConf.chatMode = false;
-      message.channel.send(this.speech.false);
-      client.settings.set(message.guild.id, guildConf);
+      Guild.updateOne(
+        {_id: message.channel.id},
+        { $set: {"config.chatMode": false}
+     }, function (err, doc) {
+        if(err || (!doc)) {
+            message.channel.send(speech.err);
+            console.log(err);
+          }
+          doc.save;
+       });
+      message.channel.send(speech.false);
     }
   } else {
       message.channel.send(this.meta.usage);
