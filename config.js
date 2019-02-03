@@ -1,6 +1,6 @@
 exports.defaultSettings = {
-    prefix: "b.",
-    chatMode: true,
+    prefix: "t.",
+    chatMode: false,
     whitelisted: false
 }
 
