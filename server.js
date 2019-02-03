@@ -1,13 +1,18 @@
 //enjoy this mess :> made w love and anger
 require('http').createServer().listen(3000)
 require('dotenv').config();
+
 const Discord = require("discord.js");
 const mongoose = require('mongoose');
 const fs = require('fs');
 const config = require("./config.js");
 const client = new Discord.Client();
+
 client.commands = new Discord.Collection();
-mongoose.connect('mongodb+srv://matea:'+process.env.DBAUTH+'@cluster0-v6b6x.mongodb.net/tbeta?retryWrites=true', { useNewUrlParser: true });
+client.whitelist = new Discord.Collection();
+client.whitelist.set("cursedtea#5140", 440497131342659594);
+
+mongoose.connect(process.env.DBAUTH, { useNewUrlParser: true });
 
 fs.readdir("./src/commands/", (err, files) => {
   files.forEach(f => {

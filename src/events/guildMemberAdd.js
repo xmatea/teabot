@@ -9,7 +9,6 @@ module.exports = (member) => {
     else {
       const userInst = new User({
         _id: member.id,
-        uname: member.user.tag,
         bank: {
           bal: 100,
           lastClaimed: null

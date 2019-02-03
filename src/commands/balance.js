@@ -13,8 +13,8 @@ exports.meta = {
     let nodoc = "Could not find document for " + message.author.id;
 
     User.findById(message.author.id, function(err, doc) {
-        if (err) message.channel.send(errmsg); console.log(err);
-        if (!doc) message.channel.send(errmsg); console.log(nodoc);
+        if (err) { message.channel.send(errmsg); console.log(err); return }
+        if (!doc) { message.channel.send(errmsg); console.log(nodoc); return;}
         message.channel.send(new Discord.RichEmbed()
         .setDescription(`**${message.author.username}**, your current balance is **${doc.bank.bal}:cherry_blossom:**`)
         .setColor("A96075"));

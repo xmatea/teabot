@@ -8,6 +8,7 @@ module.exports = async (client, message)  => {
   var cooldown = {};
   
   if (message.author.bot) return;
+  if (message.content.startsWith("<@" + client.user.id + ">")) message.channel.send("h-huh?");
   if (!(message.content.startsWith(guild.config.prefix) || responses)) return;
   if (!message.guild.me.hasPermission("SEND_MESSAGES")) return;
   
@@ -23,6 +24,8 @@ module.exports = async (client, message)  => {
           cooldown[message.author.id] = false;
       }, 5000) // 5 seconds
     } 
+
+    if (message.content.startsWith(guild.config.prefix)) {
     if (!(client.commands.get(command))) return;
 
       if (client.commands.get(command).meta.whitelisted) {
@@ -39,4 +42,5 @@ module.exports = async (client, message)  => {
           `In guild: ${message.guild.name} / ${message.guild.id}\n`);
         }
   }
+}
   

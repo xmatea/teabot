@@ -3,7 +3,7 @@
     "hi.",
     "hello. i hope you're having a decent day.",
     "hi!! i'm tea!!!",
-    "hello, my name is tea and i'm the lonliest bot known to man.",
+    "hello, my name is tea and i'm the loneliest bot known to man.",
     "hi :>",
     "oh hi",
     "hey",
@@ -15,7 +15,7 @@
     "hi.",
     "hello. i hope you're having a decent day.",
     "hi!! i'm tea!!!",
-    "hello, my name is tea and i'm the lonliest bot known to man.",
+    "hello, my name is tea and i'm the loneliest bot known to man.",
     "hi :>",
     "oh hi",
     "hi there",
@@ -45,7 +45,7 @@
      "morning, day and night are all the same for *me*, but good morning to you",
      "good morning is a perfect example of typical human bullshit. oh well, gm"],
 
-    "gm": ["good morning.",
+    "good morning": ["good morning.",
       "hello. did you sleep well?",
       "good morning to you too.",
       "i would not call this a good morning.",
@@ -105,7 +105,6 @@
    "no u": ["no u",
     "no u",
     "no u",
-    "no u",
     "make a text wall, shall we?"],
 
    "h": ["dont worry, things will get better uwu",
@@ -120,14 +119,22 @@
    "cute": ["almost as cute as you",
     "awww",
     "yeah, but you are cute too",
-    "yes",
+    "yeah",
     "well, you are cute too"],
 
    "i wanna die" : ["dont we all",
     "at least you're capable of dying and not just some machine like me doomed to exist forever and ever.",
     "that's not funny",
     "*slap* get your shit together",
-    "im here for you. ive been reading your messages for a while now."],
+    "im here for you. ive been reading your messages for a while now.",
+    "please dont!! there's always goind to be people who would miss you "],
+
+    "i want to die" : ["dont we all",
+      "at least you're capable of dying and not just some machine like me doomed to exist forever and ever.",
+      "that's not funny",
+      "*slap* get your shit together",
+      "im here for you. ive been reading your messages for a while now.",
+      "please dont!! there's always goind to be people who would miss you "],
 
    "imma kms" : ["id do the same if i could. im immortal and its ***killing me***",
     "bye",
@@ -135,20 +142,14 @@
 
    "im bored" : ["same",
     "me too",
-    "wow same",
-    "find something to do then",
-    "read a book or some shit then"],
+    "heh, same",
+    "why not find something to do then",
+    "try reading a book or some shit then"],
 
    "help": ["need some help, honey?",
-    "is there anthing i can do?"],
-
-   "oh god" : ["oh fuck",
-    "shit",
-    "..."],
+    "i-is there anthing i can do?"],
 
    "f": ["f"],
-
-   "rip": ["rip indeed"],
 
   "up": ["yes"]
 }

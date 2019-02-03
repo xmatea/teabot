@@ -32,7 +32,6 @@ client.users.forEach(user => {
     else {
       const userInst = new User({
         _id: user.id,
-        uname: user.tag,
         bank: {
           bal: 100,
           lastClaimed: null

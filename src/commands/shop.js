@@ -67,12 +67,16 @@ exports.fn = function (client, message, args, guild) {
 
                 if (doc.bank.bal < crate.price) {
                     return message.channel.send("You need more money!");
-
                 } else {
                     User.updateOne(
-                        { _id: message.author.id},
-                        { $inc: { 'bank.bal': (crate.price  * -1) } 
-                    });
+                            { _id: message.author.id },
+                            { $inc: { 'bank.bal': (crate.price * -1) } },
+                            (err) => {
+                                if (err) {
+                                    message.channel.send(speech.errmsg);
+                                    return console.log(err);
+                                }
+                            });
 
                     for (let j = 0; j < items.length; j++) {
                         User.findOne({ _id: message.author.id, 'inventory.name': items[j].name }, function (err, doc) {

@@ -9,7 +9,9 @@ exports.meta = {
 
 exports.fn = function(client, message, args, guild) {
 const Guild = require("./../core/models/guild.js");
+const config = require("./../../config.js")
 let role = message.member.hasPermission("ADMINISTRATOR");
+
 const speech = {
   changed: `Changed my prefix to `,
   maxlimit: `The new prefix cannot be longer than 10 characters.`,
@@ -17,9 +19,8 @@ const speech = {
   err: `Oh no! It looks like something went wrong...\nIf you need any help, please contact **cursedtea#5140**`
 }
 
-
   if (!role) {
-    message.channel.send(this.speech.denied);
+    message.channel.send(speech.denied);
     console.log(`Tried running command: ${this.meta.name}, failed due to user perm denial vvvvv`);
     return;
   }

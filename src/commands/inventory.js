@@ -1,6 +1,6 @@
 exports.meta = {
     name: "inventory",
-    desc: "Display your inventory",
+    desc: "Display your inventory.",
     module: "Economy",
     enabled: true,
     whitelisted: false

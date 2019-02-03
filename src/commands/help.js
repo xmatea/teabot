@@ -1,61 +1,25 @@
 exports.meta = {
-  name: "help",
-  desc: "Displays this message.",
-  usage: "<command>",
-  module: "Core",
-  enabled: true,
-  whitelisted: false
+    name: "help",
+    desc: "Displays a general startup message.",
+    usage: "<command>",
+    module: "Core",
+    enabled: true,
+    whitelisted: false
 }
 
-exports.fn = function(client, message, args, guild) {
-  const Discord = require('discord.js');
-  let p = guild.config.prefix;
+exports.fn = function (client, message, args, guild) {
+    const Discord = require("discord.js");
+    const config = require("./../../config.js");
+    let p = guild.config.prefix;
 
-  const speech = {
-    desc: `Thank you for having me on this server, it means a lot!\nHere's a list of all the things i can do ! My prefix is \`${p}\`\nJoin my support server [here!](https://discord.gg/2Q57hUS)`,
-    footertext: `You damn subcreatures. I wish I was one of you.`,
-    fun: ``,
-    core: ``,
-    eco: ``,
-    mod: ``,
-    gifs: ``
-  };
-
-  client.commands.forEach(function(name, mod) {
-    if(name.meta.whitelisted) return;
-
-    switch(name.meta.module) {
-      case "Fun":
-      speech.fun = speech.fun + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
-      break;
-
-      case "Gifs":
-      speech.gifs = speech.gifs + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
-      break;
-
-      case "Core":
-      speech.core = speech.core + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
-      break;
-
-      case "Economy":
-      speech.eco = speech.eco + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
-      break;
-
-      case "Moderation":
-      speech.mod = speech.mod + `\`${p}${name.meta.name}\` - ${name.meta.desc}\n`;
-      break;
-    }
-  });
-
-  let embed = new Discord.RichEmbed()
-    .setColor("#ffa5db")
+    message.channel.send(new Discord.RichEmbed()
     .setTitle("Hi, I'm Tea! :cherry_blossom:")
-    .setDescription(speech.desc)
-    .addField("Fun", speech.fun + speech.gifs)
-    .addField("Core", speech.core)
-    .addField("Economy", speech.eco)
-    .addField("Moderation", speech.mod)
-    .setTimestamp(new Date())
-    .setFooter(speech.footertext, client.user.avatarURL);
-  message.channel.send(embed);
+    .setDescription("Thank you for adding me here ♡ It really means a lot to me. I'll do my very best to make myself useful! Here's a quick setup guide:")
+    .addField("Change my prefix", `By default, my prefix is \`${config.defaultSettings.prefix}\`\nTo change the current prefix, type \`${p}setprefix <new prefix>\``)
+    .addField("Enable chatmode", `If it's okay for you guys, I can reply to certain messages in the chat! Enable or disable this with \`${p}chatmode on / off\``)
+    .addField("Collect items", `Each day, you can claim 100 sakuras and use them to buy crates filled with cute items! Type \`${p}daily\` to claim your money or \`${p}shop\` to go to the shop.`)
+    .addField("Explore other commands", `For a complete list of all my commands, type \`${p}commands\`\n\n`)
+    .addField("Support", "Want to know more? Join my support server [here](https://discord.gg/2Q57hUS) for help, discussions and early access on upcoming features ♡ And, uhm, i-if you like me, do you mind [voting](https://discordbots.org/bot/474652348749316096/vote) for me at discordbots.org?")
+    .setColor("#ffa5db")
+    );
 }

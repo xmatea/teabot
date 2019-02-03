@@ -15,6 +15,9 @@ let id;
 
 if (!(args === undefined || args.length == 0)) {
   id = args[0].substring(2).slice(0, -1);
+      if (id.indexOf("!") == 0) {
+        id = id.substring(1);
+      }
   if (message.guild.members.get(id)) {
     username = message.guild.members.get(id).user.username;
   }
