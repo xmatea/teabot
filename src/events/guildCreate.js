@@ -5,6 +5,8 @@ module.exports = (client, guild, defaultSettings) => {
         _id: guild.id,
         guildName: guild.name,
         guildSize: guild.members.size,
+        addDate: new Date(),
+        ownerID: guild.ownerID,
         config: {
           prefix: defaultSettings.prefix,
           chatMode: defaultSettings.chatMode
@@ -12,7 +14,7 @@ module.exports = (client, guild, defaultSettings) => {
       });
     
     guildInst.save()
-    .then(result => console.log(result))
+    .then(result => console.log("new doc for guild " + guild.id))
     .catch(err => console.log(err))
-    console.log(`I have joined a new guild with ${(guild.members.size) - 1} users. ID: ${guild.id}`);
+    console.log(`left guild ${guild.id} with ${guild.members.size} users.`);
 }

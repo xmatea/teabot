@@ -19,7 +19,7 @@ module.exports = (client, defaultSettings) => {
         });
 
         guildInst.save()
-          .then(result => console.log(result))
+          .then(result => console.log("new doc for guild " + guild.id))
           .catch(err => console.log(err))
         }
     });
@@ -39,7 +39,7 @@ client.users.forEach(user => {
         whitelisted: config.defaultSettings.whitelisted
       });
       userInst.save()
-        .then(result => console.log(result))
+        .then(result => console.log("new doc for member " + user.id))
         .catch(err => console.log(err))
     }
   });

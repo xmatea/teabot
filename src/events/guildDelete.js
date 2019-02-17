@@ -4,7 +4,7 @@ module.exports = (client, guild) => {
         if (err) console.log(err);
       });
       
-      console.log(`I have left a new guild with ${(guild.members.size) - 1} users. ID: ${guild.id}`);
+      console.log(`left guild ${guild.id} with ${guild.members.size} users.`);
 }
 
   
