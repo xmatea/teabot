@@ -12,7 +12,7 @@ client.commands = new Discord.Collection();
 client.whitelist = new Discord.Collection();
 client.whitelist.set("cursedtea#5140", 440497131342659594);
 
-mongoose.connect(process.env.mongodbauth, { useNewUrlParser: true });
+mongoose.connect(process.env.dbauth, { useNewUrlParser: true });
 
 fs.readdir("./src/commands/", (err, files) => {
   files.forEach(f => {

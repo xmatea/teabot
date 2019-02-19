@@ -29,8 +29,6 @@ exports.fn =  function (client, message, args) {
     } else if (args[0] == "money") {
       if (args[1].length == 0) return;
       if ((args[2] === undefined) || (args[2].isNaN)) return;
-
-      
       var userid = args[1].substring(2).slice(0, -1);
       if (userid.indexOf("!") == 0) {
         userid = userid.substring(1);
@@ -47,6 +45,5 @@ exports.fn =  function (client, message, args) {
               if(!doc) { message.channel.send(errmsg); console.log("no doc"); return }
               message.channel.send("Success");
           });
-      }
-    
+      } 
 }
