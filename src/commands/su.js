@@ -26,6 +26,7 @@ exports.fn =  function (client, message, args) {
       //LINK TO DISCORD.ORG
     } else if (args[0] === "vote") {
       message.channel.send("https://discordbots.org/bot/474652348749316096/");
+
     } else if (args[0] == "money") {
       if (args[1].length == 0) return;
       if ((args[2] === undefined) || (args[2].isNaN)) return;
@@ -35,7 +36,7 @@ exports.fn =  function (client, message, args) {
       }
       console.log(userid);
       if (!(message.guild.members.get(userid))) {
-        return message.channel.send("huh");
+        return message.channel.send("huh?");
       }
         User.updateOne(
           { _id: userid },

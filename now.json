@@ -1,6 +1,6 @@
 {
   "env": {
     "TOKEN": "@acme-api-key",
-    "MONGOAUTH": "@mongo-auth"
+    "DBAUTH": "@dbauth"
   }
 }
