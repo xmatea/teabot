@@ -16,7 +16,7 @@ module.exports = (member) => {
         whitelisted: config.defaultSettings.whitelisted
       });
       userInst.save()
-        .then(result => console.log("new doc for member " + user.id))
+        .then(result => console.log("new doc for member " + member.id))
         .catch(err => console.log(err))
     }
   });

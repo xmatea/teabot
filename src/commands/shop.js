@@ -12,12 +12,13 @@ exports.fn = function (client, message, args, guild) {
     const itemObj = require("./../lib/items/items.js");
     const crates = require("./../core/crates.js");
     const p = guild.config.prefix;
+    args = args.toLowerCase();
     const speech = {
         shopdesc: `I really appreciate a good cup of tea. Because of that, I own so many tea-related items! But the thing is, having all these digital teacups and cakes isn't any fun when I'm just by myself... \n\nThat's why I started packing up these mystery crates filled with collectibles so that you and your friends can collect and trade them!\n To buy one, type \`${p}shop buy <crate name>\`\n\n`,
         errmsg: "An error occurred! Contact **cursedtea#5140**",
         nodoc: "Could not find document for " + message.author.id
-
     }
+
     if (args === undefined || args.length == 0) {
         const embed = {
             "title": `Welcome to the shop, ${message.author.username}!`,
