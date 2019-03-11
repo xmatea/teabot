@@ -8,6 +8,7 @@ exports.meta = {
 }
 
 exports.fn = function(client, message, args, guild) {
+  
    const speech = {
     true: "Chat mode is now enabled! Thank you so much, now I have something to do!!",
     atrue: "It seems like chatmode has already been enabled.",
@@ -31,32 +32,30 @@ exports.fn = function(client, message, args, guild) {
       return;
     } else {
       Guild.updateOne(
-        {_id: message.guild.id},
-        { $set: {"config.chatMode": true}
-     }, function (err, doc) {
-        if(err) {
-            message.channel.send(speech.err);
-            console.log(err);
-          }
-          doc.save;
-       });
-       message.channel.send(speech.true);
+        { _id: message.guild.id },
+        { $set: { 'config.chatMode': true } },
+        (err) => {
+            if (err) {
+                message.channel.send(speech.err);
+                return console.log(err);
+            }
+            message.channel.send(speech.true);
+        });
       }
   } else if (args[0] == "off") {
     if (!guild.config.chatMode) {
         message.channel.send(speech.afalse);
     } else {
       Guild.updateOne(
-        {_id: message.channel.id},
-        { $set: {"config.chatMode": false}
-     }, function (err, doc) {
-        if(err || (!doc)) {
-            message.channel.send(speech.err);
-            console.log(err);
-          }
-          doc.save;
-       });
-      message.channel.send(speech.false);
+        { _id: message.guild.id },
+        { $set: { 'config.chatMode': false } },
+        (err) => {
+            if (err) {
+                message.channel.send(speech.err);
+                return console.log(err);
+            }
+            message.channel.send(speech.false);
+        });
     }
   } else {
       message.channel.send(this.meta.usage);

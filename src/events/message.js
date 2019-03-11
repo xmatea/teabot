@@ -1,3 +1,4 @@
+
 module.exports = async (client, message)  => {
   const Guild = require("./../core/models/guild.js");
   const responses = Object.keys(require("./../lib/responses.json"));
@@ -31,15 +32,11 @@ module.exports = async (client, message)  => {
       if (client.commands.get(command).meta.whitelisted) {
         if(client.whitelist.get(message.author.tag)) {
           client.commands.get(command).fn(client, message, args, guild);
-          console.log(`Ran elevated command: ${command}, with argument(s): ${args}\n` +
-          `By user:  ${message.author.tag} / ${message.author} \n` +
-          `In guild: ${message.guild.name} / ${message.guild.id}\n`);
+          console.log(`Executed ${command} ${args} for ${message.author.id} ${message.author.tag} in ${message.guild.id} ${message.guild.name}`);
         }
       } else {
           client.commands.get(command).fn(client, message, args, guild);
-          console.log(`Ran command: ${command}, with argument(s): ${args}\n` +
-          `By user:  ${message.author.tag} / ${message.author} \n` +
-          `In guild: ${message.guild.name} / ${message.guild.id}\n`);
+          console.log(`Executed ${command} ${args} for ${message.author.id} ${message.author.tag} in ${message.guild.id} ${message.guild.name}`);
         }
   }
 }
