@@ -7,11 +7,11 @@ exports.meta = {
 };
 
 exports.fn = function (client, message, args, guild) {
-    const items = require("./../lib/items/items.js")
     const Discord = require('discord.js');
-    const config = require("./../../config.js");
-    const User = require('./../core/models/user.js');
-    let nodoc = "Could not find document for " + message.author.id;
+    const User = require('../core/models/user.js');
+    const items = require("./../lib/items/items.js")
+    const speech = require("../lib/speech.js");
+    const economy = require("../core/economy.js")
     const p = guild.config.prefix;
     let itemlist = [];
     var embed = new Discord.RichEmbed()
@@ -34,11 +34,12 @@ exports.fn = function (client, message, args, guild) {
                 );
             } 
         });
-       if (founditem == false) message.channel.send("Are you sure that item exists?");
+       if (founditem == false) message.channel.send(speech.economy.itemNotFound);
     } else {
     User.findById(message.author.id, function (err, doc) {
-        if (err) { console.log(err); message.channel.send(config.errmsg); return }
-        if (!doc) { console.log(nodoc); message.channel.send(config.errmsg); return }
+        if (err) { console.log(err); message.channel.send(speech.genErr); return }
+        if (!doc) { economy.addUser(message.author.id); return message.channel.send(speech.tryAgain) }
+
         var values = ["Common", "Uncommon", "Rare", "Very rare"];
         for (let i = 0; i < values.length; i++) {
             itemlist[i] = doc.inventory.filter(item => item['value'] === values[i]);
@@ -51,10 +52,10 @@ exports.fn = function (client, message, args, guild) {
                 embed.addField(`\n**${values[i]} items**`, val, true);
             };
         }
-       
+        
         embed.setDescription(`You can buy mystery crates at the shop! To enter the shop, type \`${p}shop\`\nFor more details about an item, type \`${p}inventory view <item>\`\n`);
         message.channel.send(embed);
     });
 }
-
+j
 }

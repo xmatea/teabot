@@ -13,6 +13,6 @@ exports.fn = function(client, message, args) {
   if (args === undefined || args.length == 0) {
     message.channel.send(this.meta.usage);
   } else {
-    message.channel.send(response[Math.floor(Math.random() * Math.floor(response.length))]);
+    message.channel.send(this.response[Math.floor(Math.random() * Math.floor(response.length))]);
   }
 }

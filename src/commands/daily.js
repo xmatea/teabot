@@ -10,21 +10,22 @@ exports.fn = function (client, message, args, guild) {
     const time = new Date();
     const User = require('../core/models/user.js');
     const Discord = require('discord.js');
-    let errmsg = "An error occurred! Contact **cursedtea#5140**";
+    const speech = require("../lib/speech.js");
+    const economy = require("../core/economy.js");
 
     User.findById(message.author.id, function (err, doc) {
-        if (err) { message.channel.send(errmsg); console.log(err); return }
-        if (!doc) { message.channel.send(errmsg); console.log("no doc"); return }
+        if (err) { message.channel.send(speech.genErr); console.log(err); return }
+        if (!doc) { economy.addUser(message.author.id); return message.channel.send(speech.tryAgain); }
 
         var diff = time - doc.bank.lastClaimed;
         if ((diff > 1000*60*60*24) || doc.bank.lastClaimed === null) {
             User.updateOne(
             { _id: message.author.id },
             { $set: { "bank.bal": + doc.bank.bal + 100, "bank.lastClaimed": time}
-            }, function (err, doc) {
-                if (err) { message.channel.send(errmsg); console.log(err); return }
-                if(!doc) { message.channel.send(errmsg); console.log("no doc"); return }
-                message.channel.send(new Discord.RichEmbed()
+            }, function (err) {
+                if (err) { console.log(err); return message.channel.send(speech.genErr) }
+
+            message.channel.send(new Discord.RichEmbed()
             .setTitle(`Daily sakuras`)
             .setDescription(`**${message.author.username}** just recieved **100** :cherry_blossom:\nYou can claim your next sakuras in 24 hours.`)
             .setColor("A96075"));
@@ -42,7 +43,6 @@ exports.fn = function (client, message, args, guild) {
             message.channel.send(new Discord.RichEmbed()
             .setTitle(`Daily sakuras`)
             .setDescription(`Aw, you have already claimed your daily sakuras!\nTry again in **${h} hrs**, **${m} mins**, and **${s} secs** <3`)
-          //  .setThumbnail("https://i.imgur.com/zF4pDd3.jpg")
             .setColor("A96075"));
         }
     });

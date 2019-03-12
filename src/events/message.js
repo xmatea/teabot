@@ -1,3 +1,4 @@
+
 module.exports = async (client, message)  => {
   const Guild = require("./../core/models/guild.js");
   const responses = Object.keys(require("./../lib/responses.json"));

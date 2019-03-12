@@ -10,13 +10,11 @@ exports.fn = function (client, message, args, guild) {
     const Discord = require('discord.js');
     const User = require('./../core/models/user.js');
     const itemObj = require("./../lib/items/items.js");
+    const speech = require("./../lib/speech.js");
+
     const crates = require("./../core/crates.js");
+    const economy = require("./../core/economy.js");
     const p = guild.config.prefix;
-    const speech = {
-        shopdesc: `I really appreciate a good cup of tea. Because of that, I own so many tea-related items! But the thing is, having all these digital teacups and cakes isn't any fun when I'm just by myself... \n\nThat's why I started packing up these mystery crates filled with collectibles so that you and your friends can collect and trade them!\n To buy one, type \`${p}shop buy <crate name>\`\n\n`,
-        errmsg: "An error occurred! Contact **cursedtea#5140**",
-        nodoc: "Could not find document for " + message.author.id
-    }
 
     if (args === undefined || args.length == 0) {
         const embed = {
@@ -45,16 +43,15 @@ exports.fn = function (client, message, args, guild) {
     }
 
     if (args[0].toLowerCase() === "buy") {
-        if (args[2].toLowerCase() === "crate") {
+        if (args[2] !== undefined && (args[2].toLowerCase() === "crate")) {
             var crate;
             var items = [];
             var itemsToAdd = [];
             if (args[1].toLowerCase() === "small") { crate = crates.smallCrate; }
             else if (args[1].toLowerCase() === "medium") { crate = crates.mediumCrate; }
             else if (args[1].toLowerCase() === "large") { crate = crates.largeCrate; }
-            else {return message.channel.send("I can't find that crate. Did you spell it incorrectly?")}
+            else {return message.channel.send(speech.economy.itemNotFound)}
             
-
             for (let i = 0; i < crate.size; i++) {
                 let obj = getObj();
                 items.push(obj);
@@ -63,18 +60,18 @@ exports.fn = function (client, message, args, guild) {
 
             var itemsadded = [];
             User.findById(message.author.id, function (err, doc) {
-                if(err) {message.channel.send(speech.errmsg); return console.log(err)};
-                if(!doc) {message.channel.send(speech.errmsg); return console.log(nodoc)};
+                if(err) {message.channel.send(speech.genErr); return console.log(err)};
+                if(!doc) { economy.addUser(message.author.id); return message.channel.send(speech.tryAgain)}
 
                 if (doc.bank.bal < crate.price) {
-                    return message.channel.send("You need more money!");
+                    return message.channel.send(speech.economy.nomoney);
                 } else {
                     User.updateOne(
                             { _id: message.author.id },
                             { $inc: { 'bank.bal': (crate.price * -1) } },
                             (err) => {
                                 if (err) {
-                                    message.channel.send(speech.errmsg);
+                                    message.channel.send(speech.genErr);
                                     return console.log(err);
                                 }
                             });
@@ -87,7 +84,7 @@ exports.fn = function (client, message, args, guild) {
                                     { $inc: { 'inventory.$.qty': 1 } },
                                     (err) => {
                                         if (err) {
-                                            message.channel.send(speech.errmsg);
+                                            message.channel.send(speech.genErr);
                                             return console.log(err);
                                         }
                                     });
@@ -98,7 +95,7 @@ exports.fn = function (client, message, args, guild) {
                                     { $push: { 'inventory': items[j] } },
                                     (err) => {
                                         if (err) {
-                                            message.channel.send(speech.errmsg);
+                                            message.channel.send(speech.genErr);
                                             return console.log(err);
                                         }
                                     });
