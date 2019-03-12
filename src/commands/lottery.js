@@ -1,18 +1,8 @@
 exports.meta = {
-    name: "lottery",
-<<<<<<< HEAD
-    desc: "Try your luck at the lottery!",
-    module: "Fun",
-    enabled: false,
-    whitelisted: false
-  };
-  
-  exports.fn = function (client, message, args) {
-   
-=======
+    name: "lottery", 
     desc: "Test your luck at the lottery!",
     module: "Fun",
-    enabled: true,
+    enabled: false,
     whitelisted: true
   };
   
@@ -55,6 +45,5 @@ exports.meta = {
                 .setDescription())
             }
         });
->>>>>>> 99e0f3925af7edabbe78170f24dfd59f0cc77b73
   }
   
