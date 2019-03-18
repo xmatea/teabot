@@ -8,8 +8,10 @@ exports.meta = {
   
   exports.fn = function (client, message, args) {
     if (args === undefined || args.length == 0) {
-        return message.channel.send("How much money would you like to bet?");
-    } else if (args[0].isNaN){
+        return message.channel.send("Please specify an amount of money.");
+    } 
+
+    if (args[0].isNaN) {
         return message.channel.send("Uhm, that is not a number...");
     }
 
@@ -20,7 +22,6 @@ exports.meta = {
     let rand = new Math.floor(Math.random());
 
     let embed;
-
     if (rand < 0.5) {
         amount *= -1;
         embed = new Discord.RichEmbed()
