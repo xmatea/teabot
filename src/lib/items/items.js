@@ -27,6 +27,34 @@ module.exports = [{
     "qty": 1
 },
 {
+    "name": "Green Striped Egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/RVDtkio.png",
+    "value": "Common",
+    "qty": 1
+},
+{
+    "name": "Peach Striped Egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/NWmtI4j.png",
+    "value": "Common",
+    "qty": 1
+},
+{
+    "name": "Lilac Striped Egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/v881l74.png",
+    "value": "Common",
+    "qty": 1
+},
+{
+    "name": "Kiwi",
+    "type": "Food",
+    "img64": "https://i.imgur.com/U8zN75k.png",
+    "value": "Common",
+    "qty": 1
+},
+{
     "name": "Apricot Flower Teacup",
     "type": "Teacup",
     "img64": "https://i.imgur.com/8ktjNEc.png",
@@ -48,7 +76,35 @@ module.exports = [{
     "qty": 1
 },
 {
-    "name": "Strawberry cake",
+    "name": "Chocolate Cake",
+    "type": "Food",
+    "img64": "https://i.imgur.com/e6CBB4H.png",
+    "value": "Uncommon",
+    "qty": 1
+},
+{
+    "name": "Goth Egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/HlYgIqu.png",
+    "value": "Uncommon",
+    "qty": 1
+},
+{
+    "name": "Chocolate Egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/nThRMhB.png",
+    "value": "Uncommon",
+    "qty": 1
+},
+{
+    "name": "Vintage Rose Egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/NvZ0VLp.png",
+    "value": "Uncommon",
+    "qty": 1
+},
+{
+    "name": "Strawberry Cake",
     "type": "Food",
     "img64": "https://i.imgur.com/2tlnx9f.png",
     "value": "Rare",
@@ -69,6 +125,20 @@ module.exports = [{
     "qty": 1
 },
 {
+    "name": "Ice egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/pAMx6ls.png",
+    "value": "Rare",
+    "qty": 1
+},
+{
+    "name": "Ghost Egg",
+    "type": "Easter egg",
+    "img64": "https://i.imgur.com/11MBWOG.png",
+    "value": "Rare",
+    "qty": 1
+},
+{
     "name": "Golden spoon",
     "type": "Spoon",
     "img64": "https://i.imgur.com/4rrxMDj.png",
@@ -81,4 +151,11 @@ module.exports = [{
     "img64": "https://i.imgur.com/QAAhop0.png",
     "value": "Very rare",
     "qty": 1
-},];
+},
+{
+    "name": "Easter Bunny",
+    "type": "Special",
+    "img64": "https://i.imgur.com/YwUsIWy.png",
+    "value": "Very rare",
+    "qty": 1
+}];

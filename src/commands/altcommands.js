@@ -54,7 +54,6 @@ exports.meta = {
       .addField("Fun", speech.fun + speech.gifs)
       .addField("Core", speech.core)
       .addField("Economy", speech.eco)
-     // .addField("Moderation", speech.mod)
       .setTimestamp(new Date())
       .setFooter(speech.footertext, client.user.avatarURL);
     message.channel.send(embed);
