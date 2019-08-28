@@ -5,8 +5,8 @@ exports.defaultSettings = {
 }
 
 exports.owner = {
-    id: "440497131342659594",
-    tag: "cursedtea#5140"
+    id: "510565609805971471",
+    tag: "xmi#5875"
 }
 
-exports.errmsg = "An error occurred! Contact **cursedtea#5140**";
+exports.errmsg = "An error occurred! Contact **xmi#5875**";
